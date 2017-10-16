@@ -1,6 +1,5 @@
 from django.db import models
 from django.contrib.auth.models import User
-from ckeditor.fields import RichTextField
 from watson import search as watson
 from django.core.urlresolvers import reverse
 from taggit.managers import TaggableManager
@@ -10,7 +9,7 @@ from froala_editor.fields import FroalaField
 class JobCategory(models.Model):
     name = models.CharField(max_length=260)
     slug = models.SlugField(unique=True, help_text='(will be automatically generated)')
-    description = RichTextField()
+    description = FroalaField()
     user = models.ForeignKey(User)
     created_at = models.DateTimeField(auto_now_add=True)
 

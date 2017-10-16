@@ -45,7 +45,6 @@ INSTALLED_APPS = [
     'authentication',
     'froala_editor',
     'taggit',
-    'ckeditor',
     'envelope',
     'crispy_forms',
     'cookielaw',
