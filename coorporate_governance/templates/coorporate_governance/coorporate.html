@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% load imagefit %}
+
+{% block active-coorporate %}active{% endblock %}
+
+{% block title %}Coorporate Governance{% endblock %}
+
+{% block menu %}
+    {% include 'portfolio_menu.html' %}
+{% endblock %}
+
+{% block banner %}
+    <!-- START: Header Title -->
+    <div class="nk-header-title nk-header-title-parallax nk-header-title-parallax-opacity">
+        <div class="bg-image op-5">
+            <div style="background-image: url('{% static 'images/steven-spassov-54423.jpg' %}');"></div>
+        </div>
+        <div class="nk-header-table">
+            <div class="nk-header-table-cell">
+                <div class="container">
+                    <h1 class="nk-title">Coorporate Governance</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: Header Title -->
+{% endblock %}
+
+{% block body %}
+    <div class="nk-gap-4"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <h4>Coorporate Governance</h4>
+                <p>Governance is not just about convincing others to be willing to obey a set of recommendations. It is a way of doing business as well as inspiring people around us.</p>
+                <h6>Elite International Corporate Governance objectives include:</h6>
+                <ul>
+                    <li>Promote integrity, transparency, accountability and responsiveness</li>
+                    <li>Ensure appropriate checks and balances</li>
+                    <li>Cultivate ethical business behavior through the Code of Ethics and Professional Conduct</li>
+                </ul>
+                <h4>Corporate Governance Framework</h4>
+                <p>Effective corporate governance requires a clear understanding of the respective roles that constitute the management of the group and their relationships with others in the corporate structure.</p>
+                <p>This is performed in line with the overall objectives, plans and goals of business. Corporate Governance is integrated into a business` strategy and objectives and is not viewed simply as a compliance obligation, separate from the business` long-term business prospects, plans and objectives.</p>
+                <h6>The main role of Elite group corporate governance is to rely on:</h6>
+                <ul>
+                    <li>Business Ethics</li>
+                    <li>Strategic Management</li>
+                    <li>Strategic Management</li>
+                    <li>Effective Organization</li>
+                    <li>Disclosure, Transparency & Accountability</li>
+                    <li>Innovation and Continues Improvement</li>
+                    <li>Compliance with Laws and Regulations.</li>
+                    <li>The Governing body of Elite Group is the Management Board.</li>
+                </ul>
+                <div class="nk-gap-4"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

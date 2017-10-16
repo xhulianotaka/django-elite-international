@@ -1,0 +1,12 @@
+{% for message in messages %}
+  <div class="{{ message.tags }} nk-info-box nk-info-box-noicon" role="alert">
+        <div class="modal-header p-0 border-bottom-0">
+            <div class="mx-auto">
+                <span>{{ message|safe }}</span>
+            </div>
+            <div class="nk-info-box-close nk-info-box-close-btn">
+                <i class="ion-android-close"></i>
+            </div>
+        </div>
+  </div>
+{% endfor %}

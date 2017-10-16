@@ -1,0 +1,193 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load imagefit %}
+{% load humanize %}
+{% load watson %}
+{% load filter_tags %}
+
+{% block title %}Search results{% if query %} for "{{query}}"{% endif %}{% endblock %}
+
+{% block menu %}
+    {% include 'portfolio_menu.html' %}
+{% endblock %}
+
+{% block banner %}
+    <div class="nk-header-title nk-header-title-parallax nk-header-title-parallax-opacity bg-white">
+        <div class="bg-image">
+            <div style="background-image: url('{% static 'images/ahmed-saffu-201120.jpg' %}');"></div>
+        </div>
+        <div class="nk-header-table">
+            <div class="nk-header-table-cell">
+                <div class="container">
+                    <h1 class="nk-title">Search results{% if query %} for "{{query}}"{% endif %}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="nk-gap-4"></div>
+                {% regroup search_results by content_type as result_list %}
+                {% for result in result_list %}
+                    <h1 class="h2">{{ result.grouper.name|title }} results</h1>
+                    {% if result.grouper.name == 'post' %}
+                        <!-- START: Posts List -->
+                        <div class="nk-blog-isotope nk-isotope nk-isotope-gap nk-isotope-3-cols">
+
+                            {% for item in result.list %}
+                                <!-- START: Post -->
+                                <div class="nk-isotope-item">
+                                    <div class="nk-blog-post">
+                                        <div class="nk-post-category">
+                                            In <a href="{% url 'category_detail_blog' slug=item.object.category.slug %}" target="_blank">{{ item.object.category.name }}</a>
+                                        </div>
+                                        <h2 class="nk-post-title ellipsis h4"><a href="{% url 'blog_detail' slug=item.object.slug %}" target="_blank">{{ item.object.title }}</a></h2>
+
+                                        <a href="{% url 'blog_detail' slug=item.object.slug %}" target="_blank">
+                                            <img src="{{ item.object.image.url }}" alt="" class="nk-img-stretch">
+                                        </a>
+                                        <div class="nk-post-text">
+                                            <p>{{ item.object.description|safe|truncatechars:250 }}</p>
+                                        </div>
+
+                                        <div class="nk-post-meta">
+                                            <div class="nk-post-meta-right">
+                                                <span class="nk-post-by">by <a href="#">{{ item.object.user.get_full_name }}</a></span>
+                                            </div>
+                                            <div class="nk-post-date">
+                                                {{ item.object.created_at|naturalday }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- END: Post -->
+                            {% endfor %}
+                        </div>
+                        <!-- END: Posts List -->
+                    {% elif result.grouper.model == 'job' %}
+                        {% for item in result.list %}
+                            <div class="nk-blog-post">
+                                <div class="row vertical-gap">
+                                    <div class="col-lg-5">
+                                        <img src="{% static 'images/dose-media-337491.jpg' %}" alt="" class="nk-img-stretch">
+                                    </div>
+                                    <div class="col-lg-7">
+                                        <div class="nk-post-meta nk-post-meta-top pb-0">
+                                            <div class="nk-post-date nk-post-meta-right">
+                                                <span class="nk-post-by">Last day: <a href="#">{{ item.object.last_date|naturalday }}</a></span>
+                                            </div>
+                                        </div>
+                                        <div class="nk-post-category">
+                                            In <a href="{% url 'category_detail_jobs' slug=item.object.category.slug %}" target="_blank">{{ item.object.category.name|title }}</a>
+                                        </div>
+                                        <h2 class="nk-post-title h3"><a href="{% url 'job_detail' slug=item.object.slug %}" target="_blank">{{ item.object.title|title }}</a></h2>
+
+                                        <div class="nk-post-text">
+                                            <p>{{ item.object.description|safe|truncatechars:500 }}</p>
+                                        </div>
+
+                                        <div class="nk-post-continue text-left d-flex justify-content-between">
+                                            <a href="{% url 'job_apply' slug=item.object.slug %}" target="_blank">Apply Now <span class="ion-ios-arrow-thin-right"></span></a>
+                                            <a href="{% url 'job_detail' slug=item.object.slug %}" target="_blank">View All Details <span class="ion-ios-arrow-thin-right"></span></a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        {% endfor %}
+                    {% elif result.grouper.model == 'portfolio' %}
+                        <div class="nk-isotope nk-isotope-gap nk-isotope-3-cols">
+                            {% for item in result.list %}
+                                <div class="nk-portfolio-item nk-isotope-item" data-filter="{{ item.object.category.name }}">
+                                    <div class="nk-image-box-1-a">
+                                        <img class="nk-portfolio-image" src="{{ item.object.image.url|resize:'600x600,C' }}" alt="Grand mountains">
+                                        <div class="nk-image-box-overlay nk-image-box-center">
+                                            <div>
+                                                <a href="{% url 'portfolio_detail' slug=item.object.slug %}" class="nk-image-box-icon-btn nk-portfolio-quick-view">
+                                                    <span class="ion-eye"></span>
+                                                </a>
+                                                <a href="{% url 'portfolio_detail' slug=item.object.slug %}" target="_blank" class="nk-image-box-icon-btn">
+                                                    <span class="fa fa-link"></span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="nk-image-box-bottom-info">
+                                        <h2 class="nk-portfolio-title nk-post-title ellipsis h4"><a href="{% url 'portfolio_detail' slug=item.object.slug %}">{{ item.object.title|title }}</a></h2>
+                                        <div class="nk-post-meta">
+                                            <div class="nk-post-meta-right">
+                                                by <a href="#">{{ item.object.user.get_full_name }}</a>
+                                            </div>
+                                            <div class="nk-post-date">
+                                                {{ item.object.created_at|naturalday }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% elif result.grouper.model == 'boardmember' %}
+                        <div class="row vertical-gap">
+                            {% for item in result.list %}
+                                <div class="col-md-6 col-lg-3">
+                                    <div class="nk-image-box-1">
+                                        <a href="{% url 'board_member_detail' slug=item.object.slug %}" target="_blank" class="nk-image-box-link"></a>
+                                        <img src="{{ item.object.image.url|resize:'500x750,C' }}" alt="">
+                                    </div>
+                                    <div class="nk-gap"></div>
+                                    <h3 class="nk-title h4">{{ item.object.get_member_full_name }}</h3>
+                                    <h4 class="nk-sub-title text-dark-1 op-5">{{ item.object.position|title }}</h4>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+            {% empty %}
+                <h2 class="text-center">There are no results for this query.</h2>
+                <div class="nk-gap-2"></div>
+                <div class="text-center">
+                    <img width="300" src="{% static 'images/collections.png' %}" class="nk-image d-inline-block" alt="No content available">
+                </div>
+            {% endfor %}
+            <div class="nk-gap-4"></div>
+        </div>
+    </div>
+    {% if is_paginated %}
+        <!-- START: Pagination 4 -->
+        <div class="nk-pagination nk-pagination-center">
+            {% if page_obj.has_previous %}
+                <a href="?{% url_replace request 'page' page_obj.previous_page_number %}" class="nk-pagination-prev">
+                    <span class="nk-icon-arrow-left"></span>
+                </a>
+            {% else %}
+                <a href="#" class="nk-pagination-prev disabled">
+                    <span class="nk-icon-arrow-left"></span>
+                </a>
+            {% endif %}
+            <nav>
+                {% for i in paginator.page_range %}
+                    {% if page_obj.number == i %}
+                        <a href="#" class="nk-pagination-current">{{ i }} <span class="sr-only">(current)</span></a>
+                    {% else %}
+                        <a href="?{% url_replace request 'page' i %}">{{ i }}</a>
+                    {% endif %}
+                {% endfor %}
+            </nav>
+            {% if page_obj.has_next %}
+                <a href="?{% url_replace request 'page' page_obj.next_page_number %}" class="nk-pagination-next">
+                    <span class="nk-icon-arrow-right"></span>
+                </a>
+            {% else %}
+                <a href="#" class="nk-pagination-next disabled">
+                    <span class="nk-icon-arrow-right"></span>
+                </a>
+            {% endif %}
+        </div>
+        <!-- END: Pagination 4 -->
+    {% endif %}
+    <div class="nk-gap-4"></div>
+</div>
+{% endblock %}

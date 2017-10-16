@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% load imagefit %}
+
+{% block active-social-responsibility %}active{% endblock %}
+
+{% block title %}Social Responsibility{% endblock %}
+
+{% block menu %}
+    {% include 'portfolio_menu.html' %}
+{% endblock %}
+
+{% block banner %}
+    <!-- START: Header Title -->
+    <div class="nk-header-title nk-header-title-parallax nk-header-title-parallax-opacity">
+        <div class="bg-image op-5">
+            <div style="background-image: url('{% static 'images/milada-vigerova-31415.jpg' %}');"></div>
+        </div>
+        <div class="nk-header-table">
+            <div class="nk-header-table-cell">
+                <div class="container">
+                    <h1 class="nk-title">Our Social Responsibility</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: Header Title -->
+{% endblock %}
+
+{% block body %}
+    <div class="nk-gap-4"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <p>Being socially responsible is a priority for the way our corporate operates. This means that Elite International is committed to encourage higher social values and show care for community and environment. We strongly believe that business growth, a parallel community development and social growth culture must be intertwined wherever it operates. Therefore, we have a high appreciation and take active care of social and environmental policies and application development projects throughout Group network structure.</p>
+                <p>We aim to assure that our business activities weigh in as an investment in enhancing the social employment conditions, infrastructure, health care, education and culture in the communities in which we operate.</p>
+                <p>In light of modern globalization issues and environmental protection strategies, we consider it a special mission to view these topics by assessing any potential influence during project implementation. Elite International companies are not limited to providing jobs for local communities in which they operate, but strive to make a positive impact in the lives of families and country.</p>
+                <h6>Our key pillars in social programs are:</h6>
+                <ul>
+                    <li>Environment</li>
+                    <li>Education</li>
+                    <li>Culture</li>
+                    <li>Health</li>
+                </ul>
+                <div class="nk-gap-4"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

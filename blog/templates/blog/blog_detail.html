@@ -1,0 +1,218 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load imagefit %}
+{% load humanize %}
+{% load filter_tags %}
+
+{% block active-blog %}active{% endblock %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block menu %}
+    {% include 'portfolio_menu.html' %}
+{% endblock %}
+
+{% block banner %}
+    <!-- START: Header Title -->
+    <div class="nk-header-title nk-header-title-md nk-header-title-parallax nk-header-title-parallax-opacity">
+        <div class="bg-image op-5">
+            <div style="background-image: url('{{ post.image.url }}');"></div>
+        </div>
+        <div class="nk-header-table">
+            <div class="nk-header-table-cell">
+                <div class="container">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: Header Title -->
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="nk-gap-4"></div>
+
+                <!-- START: Post -->
+                <div class="nk-blog-post nk-blog-post-single">
+                    <h1 class="h2">{{ post.title|title }}</h1>
+                    <div class="nk-post-meta nk-post-meta-top">
+                        <div class="nk-post-date">
+                            {{ post.created_at|naturalday }}
+                            <span class="nk-post-by">by <a href="#">{{ post.user.get_full_name }}</a></span>
+                            <span class="nk-post-category">in <a href="{% url 'category_detail_blog' slug=post.category.slug %}" target="_blank">{{ post.category.name }}</a></span>
+                        </div>
+                    </div>
+                    <!-- START: Post Text -->
+                    <div class="nk-post-text mt-0">
+                        <div class="nk-gap"></div>
+                        <p>{{ post.description }}</p>
+                    </div>
+                    <!-- END: Post Text -->
+                    {% if post.user.profile.quote %}
+                        <blockquote class="nk-blockquote">
+                                <div class="nk-blockquote-icon">“</div>
+                                <em>{{ post.user.profile.quote }}</em>
+                                <div class="nk-blockquote-author">{{ post.user.get_full_name }}</div>
+                        </blockquote>
+                    {% endif %}
+                    <!-- START: Post Meta -->
+                    <div class="nk-post-meta">
+                        <div class="nk-post-meta-right">
+                        </div>
+                        <div class="nk-post-tags">
+                            {% for tag in post.tags.all %}
+                                <a href="{% url 'tag_detail_blog' slug=tag.slug %}" target="_blank">{{ tag.name }}</a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <!-- END: Post Meta -->
+                    {% if post.user.profile.description %}
+                        <!-- START: Post Author -->
+                        <div class="nk-post-author">
+                            <div class="nk-post-author-photo">
+                                <a href="#">
+                                    <img src="{{ post.user.profile.image.url|resize:'300x300,C' }}" alt="">
+                                </a>
+                            </div>
+                            <div class="nk-gap-1"></div>
+
+                            <h4 class="nk-post-author-name"><a href="#">{{ post.user.get_full_name }}</a></h4>
+                            <div class="nk-gap-1"></div>
+
+                            <div class="nk-post-author-info">
+                                {{ post.user.profile.description }}
+                            </div>
+                            <div class="nk-gap-1"></div>
+
+                            <div class="nk-widget-social nk-widget-social-inverted">
+                                <a href="#"><i class="ion-social-twitter"></i></a>
+                                <a href="#"><i class="ion-social-instagram-outline"></i></a>
+                                <a href="#"><i class="ion-social-dribbble-outline"></i></a>
+                                <a href="#"><i class="ion-social-pinterest"></i></a>
+                            </div>
+                        </div>
+                        <!-- END: Post Author -->
+                    </div>
+                    <!-- END: Post -->
+                    {% endif %}
+                <div class="nk-gap-4"></div>
+            </div>
+            <div class="col-lg-4">
+                <!--
+                    START: Sidebar
+
+                    Additional Classes:
+                        .nk-sidebar-left
+                        .nk-sidebar-right
+                        .nk-sidebar-sticky
+
+                    Additional Attributes:
+                        data-offset-top - add top offset to sticky sidebar
+                -->
+                <aside class="nk-sidebar nk-sidebar-right nk-sidebar-sticky" data-offset-top="20">
+                    <div class="nk-gap-4"></div>
+                    <div class="nk-widget">
+                        <h4 class="nk-widget-title">About Us</h4>
+                        <div>
+                            <p>
+                                Bring bring sea fly over day sixth, land said wherein land blessed third seasons I likeness seed sixth god image.
+                            </p>
+                            <div>
+                                <p class="elite-font mb-0">Elite International</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nk-widget">
+                        <h4 class="nk-widget-title">Categories</h4>
+                        <div>
+                            <ul class="nk-widget-categories">
+                                {% for category in categories_list %}
+                                <li>
+                                    <a href="{% url 'category_detail_blog' slug=category.slug %}" target="_blank">{{ category.name }}</a>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="nk-widget">
+                        <h4 class="nk-widget-title">Tags</h4>
+                        <div>
+                            <div class="nk-widget-tags">
+                                {% for tag in tags_list %}
+                                <a href="{% url 'tag_detail_blog' slug=tag.slug %}" target="_blank">{{ tag.name }}</a>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nk-widget">
+                        <h4 class="nk-widget-title">Recent Posts</h4>
+                        <div>
+                            {% for recent_post in recent_post_list|slice:'3' %}
+                                <div class="nk-widget-post">
+                                    <a href="{% url 'blog_detail' slug=recent_post.slug %}" class="nk-image-box-1 nk-post-image">
+                                        <img src="{{ recent_post.image.url|resize:'300x200,C' }}" alt="">
+                                    </a>
+                                    <h3 class="nk-post-title"><a href="{% url 'blog_detail' slug=recent_post.slug %}">{{ recent_post.title }}</a></h3>
+                                    <div class="nk-post-meta-date">{{ recent_post.created_at|naturalday }}</div>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="nk-gap-4"></div>
+
+                </aside>
+                <!-- END: Sidebar -->
+            </div>
+        </div>
+    </div>
+
+    <!-- START: posts nav -->
+    {% get_previous_post post.id as previous_post %}
+    {% get_next_post post.id as next_post %}
+
+    <div class="nk-page-nav">
+        {% if previous_post %}
+        <a href="{% url 'blog_detail' slug=previous_post.slug %}" class="nk-page-nav-prev">
+            <div class="icon">
+                <span class="ion-ios-arrow-left"></span>
+            </div>
+            <div class="nk-page-nav-title ellipsis">{{ previous_post.title }}</div>
+            <div class="nk-page-nav-img">
+                <div style="background-image: url('{{ previous_post.image.url }}');"></div>
+            </div>
+        </a>
+        {% else %}
+        <a href="#" class="nk-page-nav-prev disabled">
+            <div class="icon">
+                <span class="ion-ios-arrow-left"></span>
+            </div>
+            <div class="nk-page-nav-title"></div>
+            <div class="nk-page-nav-img">
+            </div>
+        </a>
+        {% endif %}
+        {% if next_post %}
+        <a href="{% url 'blog_detail' slug=next_post.slug %}" class="nk-page-nav-next">
+            <div class="icon">
+                <span class="ion-ios-arrow-right"></span>
+            </div>
+            <div class="nk-page-nav-title ellipsis">{{ next_post.title }}</div>
+            <div class="nk-page-nav-img">
+                <div style="background-image: url('{{ next_post.image.url }}');"></div>
+            </div>
+        </a>
+        {% else %}
+        <a href="#" class="nk-page-nav-next disabled">
+            <div class="icon">
+                <span class="ion-ios-arrow-right"></span>
+            </div>
+            <div class="nk-page-nav-title"></div>
+            <div class="nk-page-nav-img">
+            </div>
+        </a>
+        {% endif %}
+    </div>
+    <!-- END: posts nav -->
+{% endblock %}

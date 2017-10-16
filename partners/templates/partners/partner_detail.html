@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% load imagefit %}
+
+{% block title %}{{ partner.name|title }}{% endblock %}
+
+{% block menu %}
+    {% include 'portfolio_menu.html' %}
+{% endblock %}
+
+{% block banner %}
+    <!-- START: Header Title -->
+    <div class="nk-header-title nk-header-title-parallax nk-header-title-parallax-opacity">
+        <div class="bg-image op-5">
+            <div style="background-image: url('{{ partner.image.url }}');"></div>
+        </div>
+        <div class="nk-header-table">
+            <div class="nk-header-table-cell">
+                <div class="container">
+                    <h1 class="nk-title">{{ partner.name|title }}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: Header Title -->
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="nk-gap-4"></div>
+                <h2>{{ partner.name|title }}</h2>
+                <div class="nk-post-text">
+                    <p>{{ partner.description|safe }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

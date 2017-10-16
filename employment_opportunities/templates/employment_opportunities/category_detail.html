@@ -1,0 +1,107 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% load imagefit %}
+
+{% block active-employment-opportunities %}active{% endblock %}
+
+{% block title %}Jobs in {{ category.name }} category{% endblock %}
+
+{% block menu %}
+    {% include 'portfolio_menu.html' %}
+{% endblock %}
+
+{% block banner %}
+    <!-- START: Header Title -->
+    <div class="nk-header-title nk-header-title-parallax nk-header-title-parallax-opacity">
+        <div class="bg-image op-5">
+            <div style="background-image: url('{% static 'images/greyson-joralemon-299735.jpg' %}');"></div>
+        </div>
+        <div class="nk-header-table">
+            <div class="nk-header-table-cell">
+                <div class="container">
+                    <h1 class="nk-title">{{ category.name }}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: Header Title -->
+{% endblock %}
+
+{% block body %}
+    {% include 'messages.html' %}
+    <div class="container">
+        <div class="nk-gap-4"></div>
+        <!-- START: Posts List -->
+        <div class="nk-blog-list">
+            {% for job in category.job_set.all %}
+                <div class="nk-blog-post">
+                    <div class="row vertical-gap">
+                        <div class="col-lg-5">
+                            <img src="{% static 'images/dose-media-337491.jpg' %}" alt="" data-attr="{{ job.id }}" class="nk-img-stretch cursor-pointer get-job-details">
+                        </div>
+                        <div class="col-lg-7">
+                            <div class="nk-post-meta nk-post-meta-top pb-0">
+                                <div class="nk-post-date nk-post-meta-right">
+                                    {{ job.posted_at|naturalday }}
+                                </div>
+                            </div>
+                            <div class="nk-post-category">
+                                In <a href="{% url 'category_detail_jobs' slug=job.category.slug %}" target="_blank">{{ job.category.name|title }}</a>
+                            </div>
+                            <h2 class="nk-post-title h3"  data-tipposition="tiptop" data-tipcontent="{{ job.last_date|timeuntil }} left to apply" data-tipanimation="glow" data-tipanimationout="glowclose" data-tiptheme="tipthemeflatorange"><a href="{% url 'job_detail' slug=job.slug %}" target="_blank">{{ job.title|title }}</a></h2>
+                            <div class="nk-post-text">
+                                <p>{{ job.description|safe|truncatechars:500 }}</p>
+                            </div>
+
+                            <div class="nk-post-continue text-left d-flex justify-content-between">
+                                <a href="{% url 'job_apply' slug=job.slug %}" target="_blank">Apply Now <span class="ion-ios-arrow-thin-right"></span></a>
+                                <a href="{% url 'job_detail' slug=job.slug %}" target="_blank">View All Details <span class="ion-ios-arrow-thin-right"></span></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        {% if is_paginated %}
+        <!-- START: Pagination 4 -->
+        <div class="nk-pagination nk-pagination-center">
+            {% if page_obj.has_previous %}
+                <a href="?page={{ page_obj.previous_page_number }}" class="nk-pagination-prev">
+                    <span class="nk-icon-arrow-left"></span>
+                </a>
+            {% else %}
+                <a href="#" class="nk-pagination-prev disabled">
+                    <span class="nk-icon-arrow-left"></span>
+                </a>
+            {% endif %}
+            <nav>
+                {% for i in paginator.page_range %}
+                    {% if page_obj.number == i %}
+                        <a href="#" class="nk-pagination-current">{{ i }} <span class="sr-only">(current)</span></a>
+                    {% else %}
+                        <a href="?page={{ i }}">{{ i }}</a>
+                    {% endif %}
+                {% endfor %}
+            </nav>
+            {% if page_obj.has_next %}
+                <a href="?page={{ page_obj.next_page_number }}" class="nk-pagination-next">
+                    <span class="nk-icon-arrow-right"></span>
+                </a>
+            {% else %}
+                <a href="#" class="nk-pagination-next disabled">
+                    <span class="nk-icon-arrow-right"></span>
+                </a>
+            {% endif %}
+        </div>
+        <!-- END: Pagination 4 -->
+        {% endif %}
+        <div class="nk-gap-4"></div>
+    </div>
+    <!--<div id="loading" class="dark-backanimated-middle fadeIn">-->
+        <!--<span class="loading-text opacity-1">Please wait...</span>-->
+    <!--</div>-->
+    <div class="modal-loader" style="display: none;">
+        <img class="modal-loader-img" src="{% static 'images/loading-bars.svg' %}">
+    </div>
+{% endblock %}

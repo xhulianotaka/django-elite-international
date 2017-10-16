@@ -1,0 +1,401 @@
+{% load static %}
+{% load imagefit %}
+{% load cookielaw_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}{% endblock %}</title>
+
+        <!-- START: Styles -->
+
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Ubuntu:400,700%7cOpen+Sans:400,400italic,600" rel="stylesheet" type="text/css">
+        <link href='https://fonts.googleapis.com/css?family=Playfair+Display:700,900|Fira+Sans:400,400italic' rel='stylesheet' type='text/css'>
+        <link href="https://fonts.googleapis.com/css?family=Playball" rel="stylesheet">
+
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
+        <!-- FontAwesome -->
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+
+        <!-- IonIcons -->
+        <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+        <!-- Prism -->
+        <link rel="stylesheet" type="text/css" href="{% static 'css/prism-tomorrow.css' %}">
+
+        <!-- Khaki -->
+        <link rel="stylesheet" href="{% static 'css/khaki.css' %}">
+
+        <!-- Custom Styles -->
+        <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" href="{% static 'images/favicon2.png' %}">
+
+        <!-- Extra Styles -->
+        {% block extrastyles %}{% endblock %}
+        <!-- END: Styles -->
+    </head>
+    <body>
+    {% block navigation %}
+        <!--
+        START: Share Place
+
+        Additional Classes:
+            .nk-share-place-light
+        -->
+        <div class="nk-share-place">
+            <div>
+                <div class="container">
+                    <div class="nk-share-icons" data-url="{% block share %}http://eliteinternational.al/{% endblock %}">
+                        <div class="plusone nk-share-icon fa fa-google-plus" title="Share page on Google+"></div>
+                        <div class="facebook nk-share-icon fa fa-facebook" title="Share page on Facebook"></div>
+                        <div class="twitter nk-share-icon fa fa-twitter" title="Share page on Twitter"></div>
+                        <div class="pinterest nk-share-icon fa fa-pinterest" title="Share page on Pinterest"></div>
+                        <!-- <div class="vkontakte nk-share-icon fa fa-vk" title="Share page on VK"></div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END: Share Place -->
+
+        <!--
+            Additional Classes:
+                .nk-header-opaque
+        -->
+        <header class="nk-header">
+            <!--
+            START: Navbar
+
+            Additional Classes:
+               .nk-navbar-sticky
+               .nk-navbar-transparent
+               .nk-navbar-autohide
+               .nk-navbar-light
+            -->
+
+            <nav class="nk-navbar nk-navbar-top nk-navbar-light nk-navbar-sticky nk-navbar-autohide">
+               <div class="container">
+                  <div class="nk-nav-table">
+                     <a href="{% url 'home' %}" class="nk-nav-logo">
+                     <img src="{% static 'images/logoblack.png' %}" alt="" width="70">
+                     </a>
+                     <ul class="nk-nav nk-nav-center hidden-md-down" data-nav-mobile="#nk-nav-mobile">
+                        <li class="{% block active-home %}{% endblock %}">
+                           <a href="{% url 'home' %}">
+                           Home
+                           </a>
+                        </li>
+                        <li class=" nk-drop-item">
+                           <a href="#">
+                           Elite Group
+                           </a>
+                           <ul class="dropdown">
+                              <li class="{% block active-about %}{% endblock %}">
+                                <a href="{% url 'about' %}">
+                                About Us
+                                </a>
+                              </li>
+                              <li class="{% block active-history %}{% endblock %}">
+                                 <a href="{% url 'history' %}">
+                                 History
+                                 </a>
+                              </li>
+                              <li class="{% block active-mission %}{% endblock %}">
+                                 <a href="{% url 'mission' %}">
+                                 Mission and Values
+                                 </a>
+                              </li>
+                              <li class="{% block active-coorporate %}{% endblock %}">
+                                 <a href="{% url 'coorporate' %}">
+                                 Corporate Governance
+                                 </a>
+                              </li>
+                              <li class="{% block active-management %}{% endblock %}">
+                                 <a href="{% url 'management' %}">
+                                 Management Board
+                                 </a>
+                              </li>
+                              <li class="{% block active-group-socities %}{% endblock %}">
+                                 <a href="{% url 'group_socities' %}">
+                                 Group Societies
+                                 </a>
+                              </li>
+                              <li class="{% block active-social-responsibility %}{% endblock %}">
+                                 <a href="{% url 'social_responsibility' %}">
+                                 Social Responsibility
+                                 </a>
+                              </li>
+                           </ul>
+                        </li>
+                        <li class="nk-drop-item">
+                           <a href="#">
+                           Career
+                           </a>
+                           <ul class="dropdown">
+                              <li class="{% block active-human-resources %}{% endblock %}">
+                                 <a href="{% url 'human_resources' %}">
+                                 Human Resources
+                                 </a>
+                              </li>
+                              <li class="{% block active-students-practice %}{% endblock %}">
+                                 <a href="{% url 'students_practice' %}">
+                                 Practice for Students
+                                 </a>
+                              </li>
+                              <li class="{% block active-employment-opportunities %}{% endblock %}">
+                                 <a href="{% url 'employment_opportunities' %}">
+                                 Employment Opportunities
+                                 </a>
+                              </li>
+                           </ul>
+                        </li>
+                        <li class="nk-drop-item {% block active-portfolio %}{% endblock %}">
+                           <a href="{% url 'portfolio' %}">
+                           Portfolio
+                           </a>
+                           <ul class="dropdown">
+                                {% block menu %}
+                                {% endblock %}
+                           </ul>
+                        </li>
+                        <li class="{% block active-gallery %}{% endblock %}">
+                           <a href="{% url 'image_gallery' %}">
+                           Gallery
+                           </a>
+                        </li>
+                        <li class="{% block active-blog %}{% endblock %}">
+                           <a href="{% url 'blog' %}">
+                           Blog
+                           </a>
+                        </li>
+                        <li class="{% block active-contact %}{% endblock %}">
+                           <a href="{% url 'contact' %}">
+                           Contact
+                           </a>
+                        </li>
+                     </ul>
+                     <ul class="nk-nav nk-nav-right nk-nav-icons">
+                        <li class="single-icon hidden-lg-up">
+                           <a href="#" class="no-link-effect" data-nav-toggle="#nk-nav-mobile">
+                           <span class="nk-icon-burger">
+                           <span class="nk-t-1"></span>
+                           <span class="nk-t-2"></span>
+                           <span class="nk-t-3"></span>
+                           </span>
+                           </a>
+                        </li>
+                        <li class="single-icon">
+                           <a href="#" class="nk-share-toggle no-link-effect">
+                           <span class="ion-android-share-alt"></span>
+                           </a>
+                        </li>
+                        <li class="single-icon">
+                           <a href="#" class="nk-search-toggle no-link-effect">
+                           <span class="nk-icon-search"></span>
+                           </a>
+                        </li>
+                     </ul>
+                  </div>
+               </div>
+            </nav>
+            <!-- END: Navbar -->
+        </header>
+        <!--
+        START: Navbar Mobile
+
+        Additional Classes:
+            .nk-navbar-left-side
+            .nk-navbar-right-side
+            .nk-navbar-lg
+            .nk-navbar-overlay-content
+            .nk-navbar-light
+        -->
+        <div id="nk-nav-mobile" class="nk-navbar nk-navbar-side nk-navbar-left-side nk-navbar-overlay-content nk-navbar-light hidden-lg-up">
+            <div class="nano">
+                <div class="nano-content">
+                    <div class="nk-nav-table">
+                        <div class="nk-nav-row">
+                            <a href="index.html" class="nk-nav-logo">
+                                <img src="{% static 'images/logoblack.png' %}" alt="" width="70">
+                            </a>
+                        </div>
+                        <div class="nk-nav-row nk-nav-row-full nk-nav-row-top">
+                            <div class="nk-navbar-mobile-content">
+                                <ul class="nk-nav">
+                                    <!-- Here will be inserted menu from [data-mobile-menu="#nk-nav-mobile"] -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END: Navbar Mobile -->
+    {% endblock %}
+        <div class="nk-main">
+            {% block extracontent %}{% endblock %}
+            <!-- START: Header Title -->
+            <!--
+            Additional Classes:
+                .nk-header-title-sm
+                .nk-header-title-md
+                .nk-header-title-lg
+                .nk-header-title-xl
+                .nk-header-title-full
+                .nk-header-title-parallax
+                .nk-header-title-parallax-opacity
+            -->
+            {% block banner %}
+               <div class="nk-header-title nk-header-title-xl nk-header-title-parallax nk-header-title-parallax-opacity">
+                    <div class="bg-image op-2">
+                        <div style="background-image: url('{% static 'images/luke-chesser-2347.jpg' %}');"></div>
+                    </div>
+                    <div class="nk-header-table">
+                        <div class="nk-header-table-cell">
+                            <div class="container">
+                                <div class="nk-header-text">
+                                    <h1 class="nk-title display-3">This is Elite</h1>
+                                    <div class="nk-gap"></div>
+                                    <h2 class="nk-title nk-font-inherit fw-500">We Deliver Excellence</h2>
+
+                                    <div class="nk-gap-2"></div>
+                                    <a class="nk-video-fullscreen-toggle" href="https://vimeo.com/108018156">
+                                        <span class="nk-video-icon-2-light"><i class="fa fa-play pl-5"></i></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- END: Header Title -->
+            {% endblock %}
+
+            {% cookielaw_banner %}
+
+            {% block body %}{% endblock %}
+
+            {% block footer %}
+                <footer class="nk-footer nk-footer-parallax nk-footer-parallax-opacity">
+                    <div class="bg-image">
+                        <div style="background-image: url('{% static 'images/geetanjal-khanna-81242.jpg' %}')"></div>
+                    </div>
+                    <div>
+                        <div class="nk-gap-5"></div>
+                        <div class="nk-footer-logo">
+                            <a href="{% url 'home' %}" class="nk-nav-logo">
+                               <img src="{% static 'images/logowhite.png' %}" alt="" width="140">
+                           </a>
+                        </div>
+                        <div class="nk-gap-3"></div>
+                        <div class="nk-footer-social">
+                            <a href="#"><i class="ion-social-twitter"></i></a>
+                            <a href="#"><i class="ion-social-instagram-outline"></i></a>
+                            <a href="#"><i class="ion-social-dribbble-outline"></i></a>
+                            <a href="#"><i class="ion-social-pinterest"></i></a>
+                        </div>
+                        <div class="nk-gap-5"></div>
+                        <div class="nk-copyright">
+                            <div class="container text-center">
+                                <a href="{% url 'home' %}" target="_blank">Elite International</a> &copy; {% now "Y" %}. All rights reserved
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+                <!-- END: Footer -->
+            {% endblock %}
+
+            <!--
+                START: Side Buttons
+                    .nk-side-buttons-visible
+            -->
+            <div class="nk-side-buttons">
+                <ul>
+                    <li>
+                        <span class="nk-scroll-top">
+                            <span class="ion-ios-arrow-up"></span>
+                        </span>
+                    </li>
+                </ul>
+            </div>
+            <!-- END: Side Buttons -->
+        </div>
+
+        <!--
+        START: Search
+
+        Additional Classes:
+            .nk-search-light
+        -->
+        <div class="nk-search nk-search-light">
+            <div class="container">
+                <form action="{% url 'search_view_watson' %}">
+                    <fieldset class="form-group nk-search-field">
+                        <input type="text" class="form-control" value="{{request.GET.q}}" id="searchInput" placeholder="Search..." name="q">
+                        <label for="searchInput"><i class="ion-ios-search"></i></label>
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <!-- END: Search -->
+
+        <!-- jQuery -->
+        <script src="{% static 'js/jquery.min.js' %}"></script>
+
+        <!-- START: Scripts -->
+
+        <!-- PrognRoll -->
+        <script src="https://cdn.rawgit.com/mburakerman/prognroll/master/src/prognroll.js"></script>
+
+        <!-- GSAP -->
+        <script src="{% static 'js/TweenMax.min.js' %}"></script>
+        <script src="{% static 'js/ScrollToPlugin.min.js' %}"></script>
+
+        <!-- Bootstrap -->
+        <script src="{% static 'js/tether.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+        <!-- Sticky Kit -->
+        <script src="{% static 'js/sticky-kit.min.js' %}"></script>
+
+        <!-- Jarallax -->
+        <script src="{% static 'js/jarallax.min.js' %}"></script>
+        <script src="{% static 'js/jarallax-video.min.js' %}"></script>
+
+        <!-- Hammer.js -->
+        <script src="{% static 'js/hammer.min.js' %}"></script>
+
+        <!-- NanoSroller -->
+        <script src="{% static 'js/jquery.nanoscroller.min.js' %}"></script>
+
+        <!-- Keymaster -->
+        <script src="{% static 'js/keymaster.js' %}"></script>
+
+        <!-- Prism -->
+        <script src="{% static 'js/prism.js' %}"></script>
+
+        <!-- Social Likes -->
+        <script src="{% static 'js/social-likes.min.js' %}"></script>
+
+        <!-- Pace -->
+        <script src="{% static 'js/pace.min.js' %}"></script>
+
+        <!-- Cookie Law -->
+        <script src="{% static 'js/cookielaw.js' %}"></script>
+
+        <!-- Extra Scripts -->
+        {% block extrascripts %}{% endblock %}
+        <!-- END: Scripts -->
+
+        <!-- Custom Script -->
+        <script src="{% static 'js/custom.js' %}"></script>
+
+        <!-- Khaki -->
+        <script src="{% static 'js/khaki.min.js' %}"></script>
+        <script src="{% static 'js/khaki-init.js' %}"></script>
+    </body>
+</html>

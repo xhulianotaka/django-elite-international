@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load imagefit %}
+{% load humanize %}
+{% load filter_tags %}
+
+{% block share %}{{ request.build_absolute_uri }}{% endblock %}
+
+{% block active-portfolio %}active{% endblock %}
+
+{% block title %}{{ app.title|title }}{% endblock %}
+
+{% block menu %}
+    {% include 'portfolio_menu.html' %}
+{% endblock %}
+
+{% block banner %}
+    <!-- START: Header Title -->
+    <div class="nk-header-title nk-header-title-md nk-header-title-parallax nk-header-title-parallax-opacity">
+        <div class="bg-image op-5">
+            <div style="background-image: url('{{ app.image.url }}');"></div>
+        </div>
+        <div class="nk-header-table">
+            <div class="nk-header-table-cell">
+                <div class="container">
+                    <h1 class="nk-title">{{ app.title|title }}</h1>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- END: Header Title -->
+{% endblock %}
+
+{% block body %}
+    <div class="nk-portfolio-item-single">
+        <ul class="nk-portfolio-item-details">
+            <li>
+                <span class="icon ion-calendar"></span> {{ app.created_at|naturalday }}</li>
+            <li>
+                <span class="icon ion-pricetags"></span>
+                {% for tag in app.tags.all %}
+                    <a href="{% url 'tag_detail_portfolio' slug=tag.slug %}" target="_blank">{{ tag.name }}</a>{% if not forloop.last %}, {% endif %}
+                {% endfor %}
+            </li>
+            <li>
+                <span class="icon ion-person"></span> {{ app.user.get_full_name }}</li>
+            </li>
+            <li>
+                <span class="icon ion-bookmark"></span> <a href="{% url 'category_detail_portfolio' slug=app.category.slug %}" target="_blank">{{ app.category.name }}</a></li>
+            </li>
+        </ul>
+
+        <div class="nk-portfolio-item-description">
+            <div class="nk-gap-2"></div>
+
+            <div class="container">
+
+                <!-- All content inside Excerpt will be shown in portfolio quick view -->
+                <div class="nk-portfolio-item-excerpt">
+                    <p>{{ app.description }}</p>
+
+                </div>
+
+                <div class="nk-gap"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- START: posts nav -->
+    {% get_previous_app app.id as previous_app %}
+    {% get_next_app app.id as next_app %}
+
+    <div class="nk-page-nav">
+        {% if previous_app %}
+        <a href="{% url 'portfolio_detail' slug=previous_app.slug %}" class="nk-page-nav-prev">
+            <div class="icon">
+                <span class="ion-ios-arrow-left"></span>
+            </div>
+            <div class="nk-page-nav-title ellipsis">{{ previous_app.title }}</div>
+            <div class="nk-page-nav-img">
+                <div style="background-image: url('{{ previous_app.image.url }}')"></div>
+            </div>
+        </a>
+        {% else %}
+        <a href="#" class="nk-page-nav-prev disabled">
+            <div class="icon">
+                <span class="ion-ios-arrow-left"></span>
+            </div>
+            <div class="nk-page-nav-title"></div>
+            <div class="nk-page-nav-img">
+            </div>
+        </a>
+        {% endif %}
+        {% if next_app %}
+        <a href="{% url 'portfolio_detail' slug=next_app.slug %}" class="nk-page-nav-next">
+            <div class="icon">
+                <span class="ion-ios-arrow-right"></span>
+            </div>
+            <div class="nk-page-nav-title ellipsis">{{ next_app.title }}</div>
+            <div class="nk-page-nav-img">
+                <div style="background-image: url('{{ next_app.image.url }}')"></div>
+            </div>
+        </a>
+        {% else %}
+        <a href="#" class="nk-page-nav-next disabled">
+            <div class="icon">
+                <span class="ion-ios-arrow-right"></span>
+            </div>
+            <div class="nk-page-nav-title"></div>
+            <div class="nk-page-nav-img">
+            </div>
+        </a>
+        {% endif %}
+    </div>
+    <!-- END: posts nav -->
+{% endblock %}

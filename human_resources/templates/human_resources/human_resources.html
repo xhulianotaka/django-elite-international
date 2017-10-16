@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% load imagefit %}
+
+{% block active-human-resources %}active{% endblock %}
+
+{% block title %}Human Resources{% endblock %}
+
+{% block menu %}
+    {% include 'portfolio_menu.html' %}
+{% endblock %}
+
+{% block banner %}
+    <!-- START: Header Title -->
+    <div class="nk-header-title nk-header-title-parallax nk-header-title-parallax-opacity">
+        <div class="bg-image op-5">
+            <div style="background-image: url('{% static 'images/austin-ban-14522.jpg' %}');"></div>
+        </div>
+        <div class="nk-header-table">
+            <div class="nk-header-table-cell">
+                <div class="container">
+                    <h1 class="nk-title">Human Resources</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: Header Title -->
+{% endblock %}
+
+{% block body %}
+    <div class="nk-gap-4"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <h5 class="br-6 bg-main-6 text-dark-1 p-20">Employees are a vital part of our victory.</h5>
+                <div class="nk-gap-1"></div>
+                <h6>Sharing is caring</h6>
+                <p>For the continual welfare of Elite International, we need a compact and an organized teamwork. Therefore, one of our priorities is sharing our organizational goals with employees, because their knowledge, belief and on-going support are vital for the further existence of our corporate.</p>
+                <h6>Developing a well-established future</h6>
+                <p>Elite International Group is always looking for qualified people to be part of the staff and to work for future projects. To take part in the projects which will have a significant impact on the future of? Elite International Group, we require active people who should be invested with their knowledge, capacities and creativity to undertake new initiatives.</p>
+                <h6>Elite and family</h6>
+                <p>For Elite International family is very important. Our employees have the possibility of getting a balanced ratio between work and private life.</p>
+                <h6>The power to be heard</h6>
+                <p>The opinion of our team is precious for us. Consequently, employees have the freedom to express their mind about any suggestion or improvement, necessary on our working environment or projects. So, by thinking and brainstorming can offer various perspectives to provide solutions. Our managers are more than glad to hear the suggestions of the employees as well as assist them in the best way possible.</p>
+                <h6>Training and Professional development</h6>
+                <p>HR focuses on the selection of the most qualified and competent applicants. Once you part of our team, there are tons of opportunities to evolve professionally and to grow in your career thus giving your continuous contribution towards the Elite International's further progress.</p>
+                <div class="nk-gap-4"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

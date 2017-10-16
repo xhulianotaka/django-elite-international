@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% load imagefit %}
+
+{% block active-students-practice %}active{% endblock %}
+
+{% block title %}Students Practice{% endblock %}
+
+{% block menu %}
+    {% include 'portfolio_menu.html' %}
+{% endblock %}
+
+{% block banner %}
+    <!-- START: Header Title -->
+    <div class="nk-header-title nk-header-title-parallax nk-header-title-parallax-opacity">
+        <div class="bg-image op-5">
+            <div style="background-image: url('{% static 'images/jannis-brandt-382229.jpg' %}');"></div>
+        </div>
+        <div class="nk-header-table">
+            <div class="nk-header-table-cell">
+                <div class="container">
+                    <h1 class="nk-title">Students Practice</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: Header Title -->
+{% endblock %}
+
+{% block body %}
+    <div class="nk-gap-4"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="br-6 bg-main-6 text-dark-1 p-25">
+                    Every student can invest in themselves and gain experience by joining our group. Elite Group provides unique opportunities for qualified students, that have the desire and the willing to benefit from the staffs' experience. Here will be included full or part time professional practice for all students. The professional internship is a real contribution we provide for education and counseling to give a strong hand to the future specialists and professionals.
+                </div>
+                <div class="nk-gap-1"></div>
+                <p>Thus we perform one of the missions that we have set to ourselves,to contribute to the community. Our corporate social responsibility and contribution towards the community and society is a mission we take very seriously.</p>
+                <p>We are the place where young people can find the right support and watch how the received knowledge from the university studies is applied. During the internship, the students will be acquainted closely with all the “gears” that enable the operation of a business. This is an opportunity for the students to observe closely projects with some of the best professionals in the respective areas of the country.</p>
+                <p>After each cycle of professional internship Elite Group provides appropriate evaluations for each student being accompanied by recommendations that can serve for the future.</p>
+                <p>Moreover, we use professional internship to recruit new employees for our companies. Many of our employees have joined our Group exactly from internships, showing dedication during completing tasks assigned at the time of professional internship.</p>
+                <div class="nk-gap-4"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

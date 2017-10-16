@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load imagefit %}
+
+{% block active-movie %}active{% endblock %}
+
+{% block title %}Movie Story{% endblock %}
+
+{% block body %}
+    <div class="nk-gap-4"></div>
+    {% block banner %}
+    <div class="nk-header-title nk-header-title-full nk-header-title-parallax nk-header-title-parallax-opacity">
+        <div class="bg-image op-6">
+            <div style="background-image: url('{% static 'images/404.jpg' %}');"></div>
+        </div>
+        <div class="nk-header-table">
+            <div class="nk-header-table-cell">
+                <div class="container">
+                    <div class="nk-header-text">
+                        <div class="nk-gap-4"></div>
+                        <div class="container">
+                            <div class="text-center">
+                                <h3 class="nk-title-back op-2">Error 404</h3>
+                                <h2 class="nk-title display-4">Page Not Found</h2>
+                                <div class="nk-title-sep-icon">
+                                    <span class="icon">
+                                        <span class="ion-fireball"></span>
+                                    </span>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-8 offset-md-2">
+                                        <div class="nk-gap"></div>
+                                        <p class="lead">The page you are looking for no longer exists. Perhaps you can return back to the site’s homepage and see if you can find what you are looking for.</p>
+                                        <div class="nk-gap-1"></div>
+                                        <a href="#!" class="nk-btn nk-btn-lg nk-btn-rounded nk-btn-color-white text-dark-1">
+                                            <span class="icon">
+                                                <span class="ion-home"></span>
+                                            </span> Go to Homepage</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="nk-gap-4"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: Header Title -->
+    {% endblock %}
+{% endblock %}

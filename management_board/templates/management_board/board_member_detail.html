@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% load imagefit %}
+
+{% block active-management %}active{% endblock %}
+
+{% block title %}About {{ member.get_member_full_name|title }}{% endblock %}
+
+{% block menu %}
+    {% include 'portfolio_menu.html' %}
+{% endblock %}
+
+{% block banner %}
+    <!-- START: Header Title -->
+    <div class="nk-header-title nk-header-title-parallax nk-header-title-parallax-opacity">
+        <div class="bg-image op-5">
+            <div style="background-image: url('{% static 'images/thought-catalog-214785.jpg' %}');"></div>
+        </div>
+        <div class="nk-header-table">
+            <div class="nk-header-table-cell">
+                <div class="container">
+                    <h1 class="nk-title">{{ member.get_member_full_name|title }}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: Header Title -->
+{% endblock %}
+
+{% block body %}
+    <div class="nk-gap-4"></div>
+        <div class="container">
+            <div class="row vertical-gap align-items-center">
+                <div class="col-md-6">
+                    <img src="{{ member.image.url|resize:'600x750,C' }}" class="nk-img" alt="" />
+                </div>
+                <div class="col-md-6">
+                    <div class="text-left">
+                        <h3 class="nk-title-back">About Me</h3>
+                        <h2 class="nk-title">Skills is my power</h2>
+                        <h4 class="nk-sub-title">Biography and skills</h4>
+                    </div>
+                    <!--
+                    <h2 class="h1 nk-title">Skills is my power</h2>
+                    <h3 class="nk-sub-title">Biography and skills</h3>-->
+                    <div class="nk-gap"></div>
+                    <p>{{ member.description }}</p>
+
+                    <div class="nk-gap"></div>
+                    {% for ability in member.abilities.all %}
+                        <div class="nk-progress nk-progress-xs nk-count" data-progress="{{ ability.evaluation }}" data-progress-mask="{$}%">
+                            <div class="nk-progress-title">{{ ability.skill }}</div>
+                            <div class="nk-progress-line">
+                                <div class="bg-orange" style="width: {{ ability.evaluation }}%">
+                                    <div class="nk-progress-percent">{{ ability.evaluation }}%</div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        <div class="nk-gap-4"></div>
+
+{% endblock %}

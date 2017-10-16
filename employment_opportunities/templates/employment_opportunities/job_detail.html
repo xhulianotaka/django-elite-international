@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% load imagefit %}
+{% load filter_tags %}
+
+{% block active-employment-opportunities %}active{% endblock %}
+
+{% block title %}{{ job.title|title }} details{% endblock %}
+
+{% block menu %}
+    {% include 'portfolio_menu.html' %}
+{% endblock %}
+
+{% block banner %}
+    <!-- START: Header Title -->
+    <div class="nk-header-title nk-header-title-md nk-header-title-parallax nk-header-title-parallax-opacity">
+            <div class="bg-image op-5">
+                <div style="background-image: url('{% static 'images/kobu-agency-387557.jpg' %}');"></div>
+            </div>
+            <div class="nk-header-table">
+                <div class="nk-header-table-cell">
+                    <div class="container">
+                        <h1 class="nk-title">{{ job.title|title }} details</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <!-- END: Header Title -->
+{% endblock %}
+
+{% block body %}
+
+    <div class="nk-events-item-single">
+        <ul class="nk-events-item-details">
+            <li>
+                <span class="icon ion-calendar"></span> {{ job.last_date|naturalday }}</li>
+            <li>
+                <span class="icon ion-location"></span> {{ job.location|title }}</li>
+            <li>
+                <i class="icon ion-ios-people fa-lg"></i> {{ job.company_name|title }}
+            </li>
+            <li>
+                <span class="icon ion-bookmark"></span> {{ job.get_job_type_display|title }}</i>
+            </li>
+        </ul>
+        <div class="nk-events-item-description">
+            <div class="nk-gap-2"></div>
+            <div class="container">
+                <h3>{{ job.title|title }}</h3>
+                in <a href="{% url 'category_detail_jobs' slug=job.category.slug %}" target="_blank">{{ job.category.name|title }}</a>
+                <div>
+                    Last day of application: <strong>{{ job.last_date|naturalday }}</strong>
+                </div>
+                <div class="nk-events-item-description mt-10">
+                    <p>{{ job.description|safe }}</p>
+                </div>
+                <h2 class="nk-post-title h5">Requirements</h2>
+                <div class="nk-post-text">
+                    <p>{{ job.requirements|safe }}</p>
+                </div>
+                <div class="nk-post-tags">
+                    {% for tag in job.tags.all %}
+                        <a href="{% url 'tag_detail_jobs' slug=tag.slug %}" target="_blank">{{ tag.name }}</a>
+                    {% endfor %}
+                </div>
+                <div class="nk-gap-2"></div>
+                <a href="{% url 'job_apply' slug=job.slug %}" class="nk-btn nk-btn-rounded nk-btn-color-orange-2" target="_blank">Apply Now</a>
+                <div class="nk-gap-4"></div>
+                <!-- START: posts nav -->
+                {% get_previous_job job.id as previous_job %}
+                {% get_next_job job.id as next_job %}
+                <div class="nk-page-nav-3">
+                    <div class="container">
+                        {% if previous_job %}
+                        <a href="{% url 'job_detail' slug=previous_job.slug %}" class="nk-page-nav-prev">
+                            <div class="nk-page-nav-title">{{ previous_job.title|title }}</div>
+                            Previous
+                            <span class="nk-icon-arrow-left"></span>
+                        </a>
+                        {% else %}
+                        <div class="nk-page-nav-prev disabled">
+                            <div class="nk-page-nav-title">No More</div>
+                            Previous
+                            <span class="nk-icon-arrow-left"></span>
+                        </div>
+                        {% endif %}
+                        {% if next_job %}
+                        <a href="{% url 'job_detail' slug=next_job.slug %}" class="nk-page-nav-next">
+                            <div class="nk-page-nav-title">{{ next_job.title|title }}</div>
+                            Next
+                            <span class="nk-icon-arrow-right"></span>
+                        </a>
+                        {% else %}
+                        <div class="nk-page-nav-next disabled">
+                            <div class="nk-page-nav-title">No More</div>
+                            Next
+                            <span class="nk-icon-arrow-right"></span>
+                        </div>
+                        {% endif %}
+                        <a href="#" class="nk-page-nav-grid">
+                            <span class="ion-grid"></span>
+                        </a>
+                    </div>
+                </div>
+                <div class="nk-gap-4"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

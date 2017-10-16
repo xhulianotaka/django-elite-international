@@ -1,0 +1,314 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load imagefit %}
+{% load crispy_forms_tags %}
+{% load envelope_tags %}
+
+{% block active-contact %}active{% endblock %}
+
+{% block title %}Contact{% endblock %}
+
+{% block menu %}
+    {% include 'portfolio_menu.html' %}
+{% endblock %}
+
+{% block banner %}{% endblock %}
+
+{% block body %}
+    {% include 'messages.html' %}
+    <div class="row no-gutters bg-dark-2 text-white">
+        <div class="col-lg-8">
+            <!-- START: Google Map -->
+            <div id="google-map-contact" class="nk-gmaps nk-gmaps-lg"></div><!-- END: Google Map -->
+        </div>
+        <div class="col-lg-4 align-self-center">
+            <div class="nk-box-3">
+                <div class="nk-gap-5 hidden-md-down"></div>
+                <div class="nk-gap-1"></div>
+                <h1 class="nk-title h2">Feel Free to Contact Us</h1>
+                <h2 class="nk-sub-title">Better to call us during business hours</h2>
+
+                <div class="nk-gap"></div>
+                <div>Our team will be more than glad to assist you for further information.</div>
+                <div class="nk-gap-1"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- START: Contacts -->
+    <div class="nk-box">
+        <div class="nk-gap hidden-md-down"></div>
+        <div class="row no-gutters">
+            <div class="col-lg-4">
+                <div class="nk-box-3 nk-box-line">
+                    <div class="nk-gap-2 hidden-md-down"></div>
+                    <div class="nk-ibox-1">
+                        <div class="nk-ibox-icon nk-ibox-icon-circle">
+                            <span class="ion-ios-telephone"></span>
+                        </div>
+                        <div class="nk-ibox-cont">
+                            <h3 class="nk-ibox-title pt-5 mb-0">Phone</h3>
+                            <div>+ 355 (0) 60 06 040</div>
+                        </div>
+                    </div>
+                    <div class="nk-gap-2 hidden-md-down"></div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="nk-box-3 nk-box-line">
+                    <div class="nk-gap-2 hidden-md-down"></div>
+                    <div class="nk-ibox-1">
+                        <div class="nk-ibox-icon nk-ibox-icon-circle">
+                            <span class="ion-ios-email"></span>
+                        </div>
+                        <div class="nk-ibox-cont">
+                            <h3 class="nk-ibox-title pt-5 mb-0">Email</h3>
+                            <div>info@eliteinternational.al</div>
+                        </div>
+                    </div>
+                    <div class="nk-gap-2 hidden-md-down"></div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="nk-box-3 nk-box-line">
+                    <div class="nk-gap-2 hidden-md-down"></div>
+                    <div class="nk-ibox-1">
+                        <div class="nk-ibox-icon nk-ibox-icon-circle">
+                            <span class="ion-ios-home"></span>
+                        </div>
+                        <div class="nk-ibox-cont">
+                            <h3 class="nk-ibox-title pt-5 mb-0">Address</h3>
+                            <div>Budapest, 1051 Hungary</div>
+                        </div>
+                    </div>
+                    <div class="nk-gap-2 hidden-md-down"></div>
+                </div>
+            </div>
+        </div>
+        <div class="nk-gap hidden-md-down"></div>
+    </div>
+    <!-- END: Contacts -->
+
+    <!-- START: Partners -->
+    <div class="nk-box">
+        <div class="bg-image bg-image-parallax op-2" style="background-image: url('{% static 'images/marina-vitale-206980.jpg' %}');"></div>
+        <div class="nk-gap-4"></div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="nk-box-2">
+                        <div class="nk-gap-1 hidden-md-down"></div>
+                        <h2 class="nk-title">Social Networks</h2>
+                        <div class="nk-gap"></div>
+                        <p>If you want to stay up to date with Elite international news and activities, follow us on our social medias.</p>
+                        <div class="nk-widget-social nk-widget-social-inverted text-left">
+                            <a href="#"><i class="ion-social-twitter"></i></a>
+                            <a href="#"><i class="ion-social-instagram-outline"></i></a>
+                            <a href="#"><i class="ion-social-dribbble-outline"></i></a>
+                            <a href="#"><i class="ion-social-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="nk-box-2 bg-white br-6">
+                        <div class="nk-gap-1"></div>
+                        <h2 class="nk-title">Drop Us a Line</h2>
+                        <div class="nk-gap"></div>
+                            {% crispy form %}
+                        <div class="nk-gap-1"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="nk-gap-4"></div>
+    </div>
+    <!-- END: Partners -->
+{% endblock %}
+
+{% block footer %}
+    <footer class="nk-footer nk-footer-parallax nk-footer-parallax-opacity">
+        <div class="bg-image">
+            <div style=""></div>
+        </div>
+        <div>
+            <div class="nk-gap-5"></div>
+            <div class="nk-footer-logo">
+                <a href="{% url 'home' %}" class="nk-nav-logo">
+                   <img src="{% static 'images/logowhite.png' %}" alt="" width="140">
+                </a>
+            </div>
+            <div class="nk-gap-3"></div>
+            <div class="nk-footer-social">
+                <a href="#"><i class="ion-social-twitter"></i></a>
+                <a href="#"><i class="ion-social-instagram-outline"></i></a>
+                <a href="#"><i class="ion-social-dribbble-outline"></i></a>
+                <a href="#"><i class="ion-social-pinterest"></i></a>
+            </div>
+            <div class="nk-gap-5"></div>
+            <div class="nk-copyright">
+                <div class="container text-center">
+                    <a href="{% url 'home' %}" target="_blank">Elite International</a> &copy; {% now "Y" %}. All rights reserved
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- END: Footer -->
+{% endblock %}
+
+{% block extrascripts %}
+<script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyAyk0GKZFMzQ43xUPD5jh1E7h4NWsepxHg"></script>
+<script>
+    function initializeGmaps() {
+        var LatLng = {
+            lat: 41.3096471,
+            lng: 19.8140412
+        };
+        var mapCanvas = document.getElementById('google-map-contact');
+        var mapOptions = {
+            center: LatLng,
+            scrollwheel: false,
+            zoom: 15,
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            backgroundColor: 'none',
+            mapTypeId: 'KhakiStyle'
+        }
+        var map = new google.maps.Map(mapCanvas, mapOptions);
+        var marker = new google.maps.Marker({
+            position: LatLng,
+            map: map,
+            icon: '{% static 'images/marker-6.png' %}',
+            title: 'Khaki Office'
+        });
+
+        // style from https://snazzymaps.com/style/151/ultra-light-with-labels
+        var styledMapType = new google.maps.StyledMapType([{
+            "featureType": "water",
+            "elementType": "geometry.fill",
+            "stylers": [{
+                "color": "#d3d3d3"
+            }]
+        }, {
+            "featureType": "transit",
+            "stylers": [{
+                "color": "#808080"
+            }, {
+                "visibility": "off"
+            }]
+        }, {
+            "featureType": "road.highway",
+            "elementType": "geometry.stroke",
+            "stylers": [{
+                "visibility": "on"
+            }, {
+                "color": "#b3b3b3"
+            }]
+        }, {
+            "featureType": "road.highway",
+            "elementType": "geometry.fill",
+            "stylers": [{
+                "color": "#ffffff"
+            }]
+        }, {
+            "featureType": "road.local",
+            "elementType": "geometry.fill",
+            "stylers": [{
+                "visibility": "on"
+            }, {
+                "color": "#ffffff"
+            }, {
+                "weight": 1.8
+            }]
+        }, {
+            "featureType": "road.local",
+            "elementType": "geometry.stroke",
+            "stylers": [{
+                "color": "#d7d7d7"
+            }]
+        }, {
+            "featureType": "poi",
+            "elementType": "geometry.fill",
+            "stylers": [{
+                "visibility": "on"
+            }, {
+                "color": "#ebebeb"
+            }]
+        }, {
+            "featureType": "administrative",
+            "elementType": "geometry",
+            "stylers": [{
+                "color": "#a7a7a7"
+            }]
+        }, {
+            "featureType": "road.arterial",
+            "elementType": "geometry.fill",
+            "stylers": [{
+                "color": "#ffffff"
+            }]
+        }, {
+            "featureType": "road.arterial",
+            "elementType": "geometry.fill",
+            "stylers": [{
+                "color": "#ffffff"
+            }]
+        }, {
+            "featureType": "landscape",
+            "elementType": "geometry.fill",
+            "stylers": [{
+                "visibility": "on"
+            }, {
+                "color": "#efefef"
+            }]
+        }, {
+            "featureType": "road",
+            "elementType": "labels.text.fill",
+            "stylers": [{
+                "color": "#696969"
+            }]
+        }, {
+            "featureType": "administrative",
+            "elementType": "labels.text.fill",
+            "stylers": [{
+                "visibility": "on"
+            }, {
+                "color": "#737373"
+            }]
+        }, {
+            "featureType": "poi",
+            "elementType": "labels.icon",
+            "stylers": [{
+                "visibility": "off"
+            }]
+        }, {
+            "featureType": "poi",
+            "elementType": "labels",
+            "stylers": [{
+                "visibility": "off"
+            }]
+        }, {
+            "featureType": "road.arterial",
+            "elementType": "geometry.stroke",
+            "stylers": [{
+                "color": "#d6d6d6"
+            }]
+        }, {
+            "featureType": "road",
+            "elementType": "labels.icon",
+            "stylers": [{
+                "visibility": "off"
+            }]
+        }, {}, {
+            "featureType": "poi",
+            "elementType": "geometry.fill",
+            "stylers": [{
+                "color": "#dadada"
+            }]
+        }], {
+            name: 'KhakiStyle'
+        });
+        map.mapTypes.set('KhakiStyle', styledMapType);
+    }
+    if (typeof google !== 'undefined') {
+        google.maps.event.addDomListener(window, 'load', initializeGmaps);
+    }
+    </script>
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load imagefit %}
+{% load humanize %}
+
+{% block active-portfolio %}active{% endblock %}
+
+{% block title %}{{ category.name|title }} Category{% endblock %}
+
+{% block menu %}
+    {% include 'portfolio_menu.html' %}
+{% endblock %}
+
+{% block banner %}
+    <div class="nk-header-title nk-header-title-parallax nk-header-title-parallax-opacity bg-white text-dark-1">
+        <div class="bg-image op-5">
+            <div style="background-image: url('{% static 'images/brooke-lark-385504.jpg' %}');"></div>
+        </div>
+        <div class="nk-header-table">
+            <div class="nk-header-table-cell">
+                <div class="container">
+                    <h1 class="nk-title">{{ category.name|title }}</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block body %}
+    <div class="nk-gap-4"></div>
+    <div class="container">
+        <div class="nk-isotope nk-isotope-gap nk-isotope-3-cols">
+            {% for app in category.portfolio_set.all %}
+                <div class="nk-portfolio-item nk-isotope-item">
+                    <div class="nk-image-box-1-a">
+                        <img class="nk-portfolio-image" src="{{ app.image.url|resize:'600x600,C' }}" alt="Grand mountains">
+                        <div class="nk-image-box-overlay nk-image-box-center">
+                            <div>
+                                <a href="{% url 'portfolio_detail' slug=app.slug %}" class="nk-image-box-icon-btn nk-portfolio-quick-view">
+                                    <span class="ion-eye"></span>
+                                </a>
+                                <a href="{% url 'portfolio_detail' slug=app.slug %}" target="_blank" class="nk-image-box-icon-btn">
+                                    <span class="fa fa-link"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="nk-image-box-bottom-info">
+                        <h2 class="nk-portfolio-title nk-post-title ellipsis h4"><a href="{% url 'portfolio_detail' slug=app.slug %}">{{ app.title|title|truncatechars:30 }}</a></h2>
+                        <div class="nk-post-meta">
+                            <div class="nk-post-meta-right">
+                                by <a href="#">{{ app.user.get_full_name }}</a>
+                            </div>
+                            <div class="nk-post-date">
+                                {{ app.created_at|naturalday }}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+
+<!-- Extra Scripts -->
+{% block extrascripts %}
+    <!-- imagesLoaded -->
+    <script src="{% static 'js/imagesloaded.pkgd.min.js' %}"></script>
+
+    <!-- Isotope -->
+    <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+{% endblock %}

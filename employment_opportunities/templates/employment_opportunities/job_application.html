@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% load imagefit %}
+{% load crispy_forms_tags %}
+
+{% block active-employment-opportunities %}active{% endblock %}
+
+{% block title %}Job Application for {{ job.title|title }}{% endblock %}
+
+{% block menu %}
+    {% include 'portfolio_menu.html' %}
+{% endblock %}
+
+{% block banner %}
+    {% include 'messages.html' %}
+    <div class="nk-header-title nk-header-title-lg nk-header-title-parallax bg-white text-dark-1">
+        <div class="bg-image">
+            <div style="background-image: url('{% static 'images/image-19-a.jpg' %}');"></div>
+        </div>
+        <div class="nk-header-table">
+            <div class="nk-header-table-cell">
+                <div class="container">
+                    <div class="nk-header-text">
+                        <div class="row">
+                            <div class="col-md-8 offset-md-2 text-left">
+                                <h1 class="nk-title display-4">{{ job.title|title }} Application</h1>
+                                <div class="nk-gap-2"></div>
+                                <!-- START: Info Box 4 -->
+                                <div class="nk-info-box bg-main-6 text-dark-1 nk-info-box-noicon br-6">
+                                    <div class="nk-info-box-close nk-info-box-close-btn">
+                                        <i class="ion-android-close"></i>
+                                    </div>
+                                    <i class="ion-ios-information fa-lg"></i>&nbsp;Fields with <span class="asteriskField">(*)</span> are required
+                                </div>
+                                <!-- END: Info Box 4 -->
+                                {% crispy form %}
+                            </div>
+                        </div>
+                        <!-- END: Features + Image -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: Header Title -->
+{% endblock %}
+
+{% block body %}{% endblock %}

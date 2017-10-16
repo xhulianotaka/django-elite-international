@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% load imagefit %}
+
+{% block active-mission %}active{% endblock %}
+
+{% block title %}Mission{% endblock %}
+
+{% block menu %}
+    {% include 'portfolio_menu.html' %}
+{% endblock %}
+
+{% block banner %}
+    <!-- START: Header Title -->
+    <div class="nk-header-title nk-header-title-parallax nk-header-title-parallax-opacity">
+        <div class="bg-image op-5">
+            <div style="background-image: url('{% static 'images/casey-horner-357088.jpg' %}');"></div>
+        </div>
+        <div class="nk-header-table">
+            <div class="nk-header-table-cell">
+                <div class="container">
+                    <h1 class="nk-title">Our Mission</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: Header Title -->
+{% endblock %}
+
+{% block body %}
+    <div class="nk-gap-4"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <div class="br-6 bg-main-6 text-dark-1 p-20">Elite International’s ability to convert simple projects into success stories is the reason why we exist. Operate as an undisputed local and regional investor in the targeted markets by anticipating customer’s expending habits and offering a positive value proposition to serve those habits through excellent service, while creating attractive returns to the shareholder.</div>
+                <div class="nk-gap-1"></div>
+                <p><strong>Vision: </strong>“To set new standards of brilliance internationally, in all areas of activity.”</p>
+                <h4>Our Core Values</h4>
+                <div class="nk-gap-1"></div>
+                <h6>Collaborating</h6>
+                <p>We make our strongest contribution through collaboration and trusting relationships. Contributing with our expertise, professionalism and capitals we provide solid foundations to our partnerships and guarantee success. All Elite International Group companies, employees and partners benefit from the synergy and mutual exchange of experiences and achieve the best results.</p>
+                <h6>Novel ideas</h6>
+                <p>At Elite International Group, through our diversity we drive creativity and new perspective in all aspects of our business. We achieve optimal results, by taking risks, by learning from our experience and by continuously discovering new ways to do things better. Present across many industries, we are eager about continues growth through new projects and partnerships, through our passion and attention to specific features.</p>
+                <h6>Consideration</h6>
+                <p>We treat our staff, our partners and our customers with respect, honesty and fairness. We value the opinion of our staff, our partners and our customers; we engage them in the decision making. We encourage different perspectives, promote and recognize high performance. We do our best to stay connected and engaged through the open exchange of ideas with our partners and employees. Believing in our staff and our partners, recognizing their feedback and contribution facilities our way of growing further.</p>
+                <h6>Accountability</h6>
+                <p>We have the capability to achieve everything we promise, completely accountable and ethical. We show maximum responsibility and respect for employees, partners, customers and local communities where we invest. Elite International Group enhances the conditions of local communities by increasing employment and by supporting projects with economical and social development purpose.</p>
+                <div class="nk-gap-4"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
