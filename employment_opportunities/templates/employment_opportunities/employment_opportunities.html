@@ -6,7 +6,8 @@
 
 <!-- Extra Styles -->
 {% block extrastyles %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/jqeasytooltip.css' %}">
+    <link rel="stylesheet" href="{% static 'css/protip.min.css' %}">
+    <link rel="stylesheet" href="//min.gitcdn.xyz/repo/daneden/animate.css/master/animate.css">
 {% endblock %}
 
 {% block active-employment-opportunities %}active{% endblock %}
@@ -55,7 +56,7 @@
                             <div class="nk-post-category">
                                 In <a href="{% url 'category_detail_jobs' slug=job.category.slug %}" target="_blank">{{ job.category.name|title }}</a>
                             </div>
-                            <h2 class="nk-post-title h3"  data-tipposition="tiptop" data-tipcontent="{{ job.last_date|timeuntil }} left to apply" data-tipanimation="glow" data-tipanimationout="glowclose" data-tiptheme="tipthemeflatorange"><a href="{% url 'job_detail' slug=job.slug %}" target="_blank">{{ job.title|title }}</a></h2>
+                            <h2 class="nk-post-title h3 protip" data-pt-trigger="hover" data-pt-animate="jello" data-pt-arrow="false" data-pt-scheme="orange-2" data-pt-gravity="top" data-pt-title="{{ job.last_date|timeuntil }} left to apply"><a href="{% url 'job_detail' slug=job.slug %}" target="_blank">{{ job.title|title }}</a></h2>
                             <div class="nk-post-text">
                                 <p>{{ job.description|safe|truncatechars:500 }}</p>
                             </div>
@@ -114,10 +115,10 @@
 
 <!-- Extra Scripts -->
 {% block extrascripts %}
-    <script src="{% static 'js/jqeasytooltip.v1.3.min.js' %}"></script>
+    <script src="//min.gitcdn.xyz/repo/DoclerLabs/Protip/master/protip.min.js"></script>
     <script>
         $(document).ready(function(){
-            $(".nk-post-title").jqeasytooltip(); //basic init
+            $.protip();
         });
     </script>
 {% endblock %}

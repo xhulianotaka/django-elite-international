@@ -3,6 +3,12 @@
 {% load humanize %}
 {% load imagefit %}
 
+<!-- Extra Styles -->
+{% block extrastyles %}
+    <link rel="stylesheet" href="{% static 'css/protip.min.css' %}">
+    <link rel="stylesheet" href="//min.gitcdn.xyz/repo/daneden/animate.css/master/animate.css">
+{% endblock %}
+
 {% block active-management %}active{% endblock %}
 
 {% block title %}Management Board{% endblock %}
@@ -41,7 +47,7 @@
                             <img src="{{ member.image.url|resize:'500x750,C' }}" alt="">
                         </div>
                         <div class="nk-gap"></div>
-                        <h3 class="nk-title h4">{{ member.get_member_full_name }}</h3>
+                        <h3 class="nk-title h4 protip" data-pt-trigger="hover" data-pt-animate="tada" data-pt-scheme="orange-2" data-pt-title="{{ member.quote }}">{{ member.get_member_full_name }}</h3>
                         <h4 class="nk-sub-title text-dark-1 op-5">{{ member.position|title }}</h4>
                     </div>
                 {% endfor %}
@@ -88,4 +94,14 @@
         <div class="nk-gap-4"></div>
     </div>
     <!-- END: Partners -->
+{% endblock %}
+
+<!-- Extra Scripts -->
+{% block extrascripts %}
+    <script src="//min.gitcdn.xyz/repo/DoclerLabs/Protip/master/protip.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.protip();
+        });
+    </script>
 {% endblock %}
