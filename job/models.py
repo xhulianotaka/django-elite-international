@@ -26,7 +26,7 @@ TYPE = (
     )
 
 class Job(models.Model):
-    title = models.CharField(max_length=300)
+    title = models.CharField(max_length=400)
     slug = models.SlugField(unique=True, help_text='(will be automatically generated)')
     description = FroalaField(help_text='(job description)')
     posted_by = models.ForeignKey(User)

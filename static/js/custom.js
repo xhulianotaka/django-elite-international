@@ -19,6 +19,58 @@ $(document).ready(function(){
     $(document).on('hidden.bs.modal', '#myModal', function (e) {
         $('#myModal').remove();
     });
+    $(document).on('hidden.bs.modal', '#JobApplicationAjax', function (e) {
+        $('#JobApplicationAjax').remove();
+    });
+
+    // get apply job modal
+    $('.apply-job').click(function(event){
+        event.preventDefault();
+        job_id = $(this).attr('data-id');
+        $('.modal-loader').show();
+        $.ajax({
+            type: "GET",
+            url: "/jobs/" + job_id + "/apply/ajax/",
+            success: function(data) {
+                $('body').append(data);
+                $('#JobApplicationAjax').modal('show');
+            }
+        }).done(function(){
+                $('.modal-loader').hide();
+            });
+    });
+
+    // get apply job modal
+    $(document).on( "submit", ".apply-job-form", function( event ) {
+        event.preventDefault();
+        var formData = new FormData(this);
+        job_id = $(this).attr('data-id');
+        $('#JobApplicationAjax').modal('hide');
+        $('.modal-backdrop').remove();
+        $('#JobApplicationAjax').remove();
+        $('.alert-message').remove();
+        $('.modal-loader').show();
+        $.ajax({
+            type: "POST",
+            url: "/jobs/" + job_id + "/apply/ajax/",
+            data: formData,
+            async: false,
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function(data) {
+                $('body').append(data);
+                if($('.alert-message').hasClass('bg-orange')){
+                    $('#JobApplicationAjax').modal('show');
+                }
+                else {
+                    $('#JobApplicationAjax').remove();
+                }
+            }
+        }).done(function(){
+                $('.modal-loader').hide();
+            });
+    });
 
     <!--Start of Zendesk Chat Script-->
 //    window.$zopim||(function(d,s){var z=$zopim=function(c){z._.push(c)},$=z.s=

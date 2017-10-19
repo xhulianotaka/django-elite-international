@@ -109,7 +109,8 @@ urlpatterns += [
 
 urlpatterns += [
     url(r'^employment-opportunities/$', employment_opportunities.EmploymentOpportunities.as_view(), name='employment_opportunities'),
-    url(r'^jobs/(?P<slug>[\w-]+)/apply$', employment_opportunities.JobApply.as_view(), name='job_apply'),
+    url(r'^jobs/(?P<slug>[\w-]+)/apply/$', employment_opportunities.JobApply.as_view(), name='job_apply'),
+    url(r'^jobs/(?P<id>[\d+])/apply/ajax/$', employment_opportunities.JobApplyAjax, name='job_apply_ajax'),
     url(r'^jobs/(?P<slug>[\w-]+)/$', employment_opportunities.JobDetail.as_view(), name='job_detail'),
     url(r'^get-job-details/$', employment_opportunities.JobDetailAjax, name='job_detail_ajax'),
     url(r'^categories/jobs/(?P<slug>[\w-]+)/$', employment_opportunities.CategoryDetail.as_view(), name='category_detail_jobs'),

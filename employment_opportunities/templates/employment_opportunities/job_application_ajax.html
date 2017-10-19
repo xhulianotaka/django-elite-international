@@ -1,0 +1,25 @@
+{% load crispy_forms_tags %}
+{% include 'messages.html' %}
+<div id="JobApplicationAjax" class="modal nk-modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog br-6" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header border-bottom-0">
+                <h4 class="modal-title nk-title" id="myModalLabel">{{ job.title|title }}</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span class="ion-android-close"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" class="apply-job-form" enctype="multipart/form-data" data-id="{{ job.id }}">
+                    {% csrf_token %}
+                    {{ form.has_errors }}
+                    {{ form|crispy }}
+                    <button type="submit" class="nk-btn nk-btn-block nk-btn-rounded nk-btn-color-dark-2">Apply</button>
+                </form>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

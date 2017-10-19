@@ -14,6 +14,8 @@ from elite.mixins import *
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.http import Http404, HttpResponse
+from django.utils.decorators import method_decorator
+from django.contrib import messages
 
 class EmploymentOpportunities(MenuMixin, generic.ListView):
     model = Job
@@ -55,6 +57,26 @@ class JobApply(MenuMixin, FormMessagesMixin, generic.CreateView):
         job_apply = Job.objects.get(slug=self.kwargs['slug'])
         form.instance.job = job_apply
         return super(JobApply, self).form_valid(form)
+
+def JobApplyAjax(request, id):
+    if request.is_ajax():
+        job_apply = Job.objects.get(id=id)
+        if request.method == 'POST':
+            form = JobApplicationForm(request.POST, request.FILES)
+            if form.is_valid():
+                application_form = form.save(commit=False)
+                application_form.job = job_apply
+                application_form.save()
+                messages.success(request, 'Thank you for your application. We will contact you soon :)')
+            else:
+                messages.error(request, 'There was an error in the application form. Please try again.')
+        else:
+            form = JobApplicationForm()
+
+        return render(request, 'employment_opportunities/job_application_ajax.html', {'form': form,
+                                                                                      'job': job_apply})
+    else:
+        raise Http404
 
 class JobDetail(MenuMixin, generic.DetailView):
     model = Job
