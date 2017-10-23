@@ -81,12 +81,13 @@ def JobApply(request, slug):
             else:
                 messages.error(request, 'Invalid reCAPTCHA. Please try again.')
         else:
-            messages.error(request, 'There was an error in the application form. Please try again.')
+            messages.error(request, 'There was an error in the application form.')
     else:
         form = JobApplicationForm()
 
     return render(request, template, {'form': form,
-                                      'job': job_apply})
+                                      'job': job_apply,
+                                      'category_list': PortfolioCategory.objects.order_by('-created_at')})
 
 class JobDetail(MenuMixin, generic.DetailView):
     model = Job

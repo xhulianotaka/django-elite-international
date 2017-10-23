@@ -20,7 +20,7 @@ $(document).ready(function(){
         $('#myModal').remove();
     });
     $(document).on('hidden.bs.modal', '#JobApplicationAjax', function (e) {
-        $('#JobApplicationAjax').remove();
+        $('.modal-dialog').empty();
     });
 
     // get job application modal
@@ -32,7 +32,7 @@ $(document).ready(function(){
             type: "GET",
             url: "/jobs/" + job_slug + "/apply/",
             success: function(data) {
-                $('body').append(data);
+                $('.modal-dialog').append(data);
                 $('#JobApplicationAjax').modal('show');
             }
         }).done(function(){
@@ -45,11 +45,9 @@ $(document).ready(function(){
         event.preventDefault();
         var formData = new FormData(this);
         job_slug = $(this).attr('data-slug');
-        $('#JobApplicationAjax').modal('hide');
-        $('.modal-backdrop').remove();
-        $('#JobApplicationAjax').remove();
-        $('.alert-message').remove();
         $('.modal-loader').show();
+        $('.modal-dialog').empty();
+
         $.ajax({
             type: "POST",
             url: "/jobs/" + job_slug + "/apply/",
@@ -59,12 +57,9 @@ $(document).ready(function(){
             contentType: false,
             processData: false,
             success: function(data) {
-                $('body').append(data);
-                if($('.alert-message').hasClass('bg-orange')){
-                    $('#JobApplicationAjax').modal('show');
-                }
-                else {
-                    $('#JobApplicationAjax').remove();
+                $('.modal-dialog').append(data);
+                if($('.alert-message').hasClass('bg-success')){
+                    $('.apply-job-form').remove();
                 }
             }
         }).done(function(){
