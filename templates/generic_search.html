@@ -91,7 +91,7 @@
                                         </div>
 
                                         <div class="nk-post-continue text-left d-flex justify-content-between">
-                                            <a href="{% url 'job_apply' slug=item.object.slug %}" data-id="{{ item.object.id }}" class="apply-job" target="_blank">Apply Now <span class="ion-ios-arrow-thin-right"></span></a>
+                                            <a href="{% url 'job_apply' slug=item.object.slug %}" data_slug="{{ item.object.slug }}" class="apply-job" target="_blank">Apply Now <span class="ion-ios-arrow-thin-right"></span></a>
                                             <a href="{% url 'job_detail' slug=item.object.slug %}" target="_blank">View All Details <span class="ion-ios-arrow-thin-right"></span></a>
                                         </div>
                                     </div>

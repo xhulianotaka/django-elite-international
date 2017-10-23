@@ -56,7 +56,7 @@
                             <div class="nk-post-category">
                                 In <a href="{% url 'category_detail_jobs' slug=job.category.slug %}" target="_blank">{{ job.category.name|title }}</a>
                             </div>
-                            <h2 class="nk-post-title h3 protip" data-pt-trigger="hover" data-pt-animate="jello" data-pt-arrow="false" data-pt-scheme="orange-2" data-pt-gravity="top" data-pt-title="{{ job.last_date|timeuntil }} left to apply"><a href="{% url 'job_detail' slug=job.slug %}" target="_blank">{{ job.title|title }}</a></h2>
+                            <h2 class="nk-post-title h3 protip" data-pt-trigger="hover" data-pt-animate="tada" data-pt-arrow="false" data-pt-scheme="orange-2" data-pt-gravity="top" data-pt-title="{{ job.last_date|timeuntil }} left to apply"><a href="{% url 'job_detail' slug=job.slug %}" target="_blank">{{ job.title|title }}</a></h2>
                             <div class="nk-post-text">
                                 <p>{{ job.description|safe|truncatechars:500 }}</p>
                             </div>

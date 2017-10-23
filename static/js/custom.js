@@ -23,14 +23,14 @@ $(document).ready(function(){
         $('#JobApplicationAjax').remove();
     });
 
-    // get apply job modal
+    // get job application modal
     $('.apply-job').click(function(event){
         event.preventDefault();
-        job_id = $(this).attr('data-id');
+        job_slug = $(this).attr('data_slug');
         $('.modal-loader').show();
         $.ajax({
             type: "GET",
-            url: "/jobs/" + job_id + "/apply/ajax/",
+            url: "/jobs/" + job_slug + "/apply/",
             success: function(data) {
                 $('body').append(data);
                 $('#JobApplicationAjax').modal('show');
@@ -40,11 +40,11 @@ $(document).ready(function(){
             });
     });
 
-    // get apply job modal
+    // post job application
     $(document).on( "submit", ".apply-job-form", function( event ) {
         event.preventDefault();
         var formData = new FormData(this);
-        job_id = $(this).attr('data-id');
+        job_slug = $(this).attr('data-slug');
         $('#JobApplicationAjax').modal('hide');
         $('.modal-backdrop').remove();
         $('#JobApplicationAjax').remove();
@@ -52,7 +52,7 @@ $(document).ready(function(){
         $('.modal-loader').show();
         $.ajax({
             type: "POST",
-            url: "/jobs/" + job_id + "/apply/ajax/",
+            url: "/jobs/" + job_slug + "/apply/",
             data: formData,
             async: false,
             cache: false,

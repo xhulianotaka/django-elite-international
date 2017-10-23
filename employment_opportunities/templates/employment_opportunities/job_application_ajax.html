@@ -1,5 +1,7 @@
 {% load crispy_forms_tags %}
 {% include 'messages.html' %}
+{% load static %}
+
 <div id="JobApplicationAjax" class="modal nk-modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog br-6" role="document">
         <div class="modal-content">
@@ -11,10 +13,10 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" class="apply-job-form" enctype="multipart/form-data" data-id="{{ job.id }}">
+                <form method="POST" class="apply-job-form" enctype="multipart/form-data" data-slug="{{ job.slug }}">
                     {% csrf_token %}
-                    {{ form.has_errors }}
                     {{ form|crispy }}
+                    <div class="g-recaptcha mb-10" data-sitekey="6LdPcTUUAAAAAEUz-tNvLT3AIL18m9TgGwRxdNg_"></div>
                     <button type="submit" class="nk-btn nk-btn-block nk-btn-rounded nk-btn-color-dark-2">Apply</button>
                 </form>
             </div>
@@ -23,3 +25,8 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
+
+<!-- Extra Scripts -->
+{% block extrascripts %}
+    <script src="{% static 'js/api.js' %}"></script>
+{% endblock %}

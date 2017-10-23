@@ -34,7 +34,12 @@
                                     <i class="ion-ios-information fa-lg"></i>&nbsp;Fields with <span class="asteriskField">(*)</span> are required
                                 </div>
                                 <!-- END: Info Box 4 -->
-                                {% crispy form %}
+                                <form method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    {{ form|crispy }}
+                                    <div class="g-recaptcha mb-10 d-block" data-sitekey="6LdPcTUUAAAAAEUz-tNvLT3AIL18m9TgGwRxdNg_"></div>
+                                    <button type="submit" class="nk-btn nk-btn-block nk-btn-rounded nk-btn-color-dark-2">Apply</button>
+                                </form>
                             </div>
                         </div>
                         <!-- END: Features + Image -->
@@ -47,3 +52,8 @@
 {% endblock %}
 
 {% block body %}{% endblock %}
+
+<!-- Extra Scripts -->
+{% block extrascripts %}
+    <script src="{% static 'js/api.js' %}"></script>
+{% endblock %}

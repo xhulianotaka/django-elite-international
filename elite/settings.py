@@ -193,6 +193,8 @@ ENVELOPE_EMAIL_RECIPIENTS = ('taka_xhuliano@hotmail.com', 'taka.xhuliano@gmail.c
 
 IMAGEFIT_ROOT = ""
 
+GOOGLE_RECAPTCHA_SECRET_KEY = '6LdPcTUUAAAAAHkH1l0cBEbsGaLJGb5XUmVO94UN'
+
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
