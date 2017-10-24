@@ -5,10 +5,25 @@
 
 {% block active-portfolio %}active{% endblock %}
 
-{% block title %}{{ category.name|title }} Category{% endblock %}
+{% block title %}Portfolio | {{ category.name|title }} Category{% endblock %}
 
 {% block menu %}
-    {% include 'portfolio_menu.html' %}
+    {% for app_category in category_list %}
+        <li class="{% if app_category == category %}active{% endif %} nk-drop-item">
+            <a href="{% url 'category_detail_portfolio' slug=app_category.slug %}">
+                {{ app_category.name|title }}
+            </a>
+            <ul class="dropdown">
+                {% for project in app_category.portfolio_set.all %}
+                    <li>
+                       <a href="{% url 'portfolio_detail' slug=project.slug %}">
+                            {{ project.title|title|truncatechars:25 }}
+                       </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
 {% endblock %}
 
 {% block banner %}
