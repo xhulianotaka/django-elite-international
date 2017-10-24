@@ -5,8 +5,9 @@
 {% load filter_tags %}
 
 {% block active-employment-opportunities %}active{% endblock %}
+{% block active-career %}active{% endblock %}
 
-{% block title %}{{ job.title|title }} details{% endblock %}
+{% block title %}Empoyment Opportunities | {{ job.title|title }}{% endblock %}
 
 {% block menu %}
     {% include 'portfolio_menu.html' %}
@@ -25,6 +26,18 @@
                     </div>
                 </div>
             </div>
+            <ul class="nk-events-item-details">
+                <li>
+                    <span class="icon ion-calendar"></span> {{ job.last_date|naturalday }}</li>
+                <li>
+                    <span class="icon ion-location"></span> {{ job.location|title }}</li>
+                <li>
+                    <i class="icon ion-ios-people fa-lg"></i> {{ job.company_name|title }}
+                </li>
+                <li>
+                    <span class="icon ion-bookmark"></span> {{ job.get_job_type_display|title }}</i>
+                </li>
+            </ul>
         </div>
     <!-- END: Header Title -->
 {% endblock %}
@@ -32,18 +45,6 @@
 {% block body %}
 
     <div class="nk-events-item-single">
-        <ul class="nk-events-item-details">
-            <li>
-                <span class="icon ion-calendar"></span> {{ job.last_date|naturalday }}</li>
-            <li>
-                <span class="icon ion-location"></span> {{ job.location|title }}</li>
-            <li>
-                <i class="icon ion-ios-people fa-lg"></i> {{ job.company_name|title }}
-            </li>
-            <li>
-                <span class="icon ion-bookmark"></span> {{ job.get_job_type_display|title }}</i>
-            </li>
-        </ul>
         <div class="nk-events-item-description">
             <div class="nk-gap-2"></div>
             <div class="container">

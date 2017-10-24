@@ -47,7 +47,6 @@ $(document).ready(function(){
         job_slug = $(this).attr('data-slug');
         $('.modal-loader').show();
         $('.modal-dialog').empty();
-
         $.ajax({
             type: "POST",
             url: "/jobs/" + job_slug + "/apply/",

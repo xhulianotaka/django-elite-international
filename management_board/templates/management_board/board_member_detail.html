@@ -4,8 +4,9 @@
 {% load imagefit %}
 
 {% block active-management %}active{% endblock %}
+{% block active-elite-group %}active{% endblock %}
 
-{% block title %}About {{ member.get_member_full_name|title }}{% endblock %}
+{% block title %}Management Board | {{ member.get_member_full_name|title }}{% endblock %}
 
 {% block menu %}
     {% include 'portfolio_menu.html' %}
@@ -15,7 +16,7 @@
     <!-- START: Header Title -->
     <div class="nk-header-title nk-header-title-parallax nk-header-title-parallax-opacity">
         <div class="bg-image op-5">
-            <div style="background-image: url('{% static 'images/thought-catalog-214785.jpg' %}');"></div>
+            <div style="background-image: url('{% static 'images/collin-armstrong-272043.jpg' %}');"></div>
         </div>
         <div class="nk-header-table">
             <div class="nk-header-table-cell">

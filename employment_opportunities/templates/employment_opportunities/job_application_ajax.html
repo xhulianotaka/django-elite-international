@@ -8,10 +8,6 @@
             position: relative !important;
             border-radius: 6px;
         }
-
-        .nk-info-box {
-            padding: 10px;
-         }
     </style>
 {% endblock %}
 
@@ -23,7 +19,7 @@
         </button>
     </div>
     <div class="modal-body">
-        {% include 'messages.html' %}
+        {% include 'ajax_messages.html' %}
         <form method="POST" class="apply-job-form" enctype="multipart/form-data" data-slug="{{ job.slug }}">
             {% csrf_token %}
             {{ form|crispy }}

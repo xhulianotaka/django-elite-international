@@ -1,0 +1,5 @@
+{% for message in messages %}
+  <div class="{{ message.tags }} nk-info-box p-10" role="alert">
+        <span>{{ message|safe }}</span>
+  </div>
+{% endfor %}

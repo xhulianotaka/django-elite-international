@@ -90,7 +90,7 @@
                            Home
                            </a>
                         </li>
-                        <li class=" nk-drop-item">
+                        <li class="{% block active-elite-group %}{% endblock %} nk-drop-item">
                            <a href="#">
                            Elite Group
                            </a>
@@ -132,7 +132,7 @@
                               </li>
                            </ul>
                         </li>
-                        <li class="nk-drop-item">
+                        <li class="{% block active-career %}{% endblock %} nk-drop-item">
                            <a href="#">
                            Career
                            </a>
@@ -199,12 +199,15 @@
                            <span class="nk-icon-search"></span>
                            </a>
                         </li>
+                         {% block additional_menu_items %}{% endblock %}
                      </ul>
                   </div>
                </div>
             </nav>
             <!-- END: Navbar -->
         </header>
+
+        {% block navbar_side %}{% endblock %}
         <!--
         START: Navbar Mobile
 
@@ -316,7 +319,7 @@
             <div class="nk-side-buttons nk-side-buttons-visible">
                 <ul>
                     <li>
-                        <span class="nk-scroll-top">
+                        <span class="nk-scroll-top bg-white text-dark-1">
                             <span class="ion-ios-arrow-up"></span>
                         </span>
                     </li>
