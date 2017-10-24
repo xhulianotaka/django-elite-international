@@ -73,7 +73,10 @@ def JobApply(request, slug):
                 EmailMessage(subject, message, to=to, from_email=from_email).send()
                 ''' End Send E-mail '''
 
-                messages.success(request, 'Thank you for your application. We will contact you soon :)')
+                if request.is_ajax():
+                    messages.success(request, 'Thank you for your application')
+                else:
+                    messages.success(request, 'Thank you for your application. We will contact you soon')
 
                 if not request.is_ajax():
                     return redirect(reverse('employment_opportunities'))

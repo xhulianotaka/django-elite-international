@@ -8,6 +8,10 @@
             position: relative !important;
             border-radius: 6px;
         }
+
+        .nk-info-box {
+            padding: 10px;
+         }
     </style>
 {% endblock %}
 
@@ -24,7 +28,7 @@
             {% csrf_token %}
             {{ form|crispy }}
             <div class="g-recaptcha mb-10" data-sitekey="6LdPcTUUAAAAAEUz-tNvLT3AIL18m9TgGwRxdNg_"></div>
-            <button type="submit" class="nk-btn nk-btn-block nk-btn-rounded nk-btn-color-dark-2">Apply</button>
+            <button type="submit" class="nk-btn nk-btn-block nk-btn-rounded btn-info">Apply</button>
         </form>
     </div>
 </div>

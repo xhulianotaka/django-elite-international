@@ -18,7 +18,7 @@
 -------------------------------------------------------------------*/
 var options = {
     enableSearchAutofocus: true,
-    enableActionLikeAnimation: true,
+    enableActionLikeAnimation: false,
     enableShortcuts: true,
     enableMouseParallax: true,
     scrollToAnchorSpeed: 700,
@@ -100,15 +100,15 @@ var options = {
     events: {
         actionHeart: function actionHeart(params) {
             params.updateIcon();
-            recipe_id = params.$dom[0].attributes.id.value;
-            $.ajax({
-                type: "POST",
-                url: "/home/like-recipe/",
-                dataType: "json",
-                data: {"recipe_id": recipe_id},
-                success: function(data) {
-                }
-            });
+//            recipe_id = params.$dom[0].attributes.id.value;
+//            $.ajax({
+//                type: "POST",
+//                url: "/home/like-recipe/",
+//                dataType: "json",
+//                data: {"recipe_id": recipe_id},
+//                success: function(data) {
+//                }
+//            });
             // fake timeout for demonstration
             // Change on AJAX request or something
             setTimeout(function () {

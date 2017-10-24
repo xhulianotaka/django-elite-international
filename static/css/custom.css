@@ -63,10 +63,6 @@
     text-align: center;
 }
 
-.cursor-pointer {
-    cursor: pointer;
-}
-
 .modal-loader {
     position: fixed;
     left: 0;

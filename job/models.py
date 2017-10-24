@@ -53,7 +53,7 @@ class JobApplication(models.Model):
     phone = models.IntegerField()
     current_company = models.CharField(max_length=300, help_text='<i class="ion-ios-information fa-lg"></i> optional', blank=True, null=True)
     portfolio_url = models.URLField(help_text='<i class="ion-ios-information fa-lg"></i> optional', blank=True, null=True)
-    additional_information = models.TextField(help_text='<i class="ion-ios-information fa-lg"></i> add a cover letter or anything else you want to share', blank=True, null=True)
+    additional_information = models.TextField(help_text='<i class="ion-ios-information fa-lg"></i> add a cover letter or anything else you want to share with us', blank=True, null=True)
     resume = models.FileField(upload_to='Application_Documents', help_text='<i class="ion-ios-information fa-lg"></i> resume/CV (we prefer in pdf)')
     applied_at = models.DateTimeField(auto_now_add=True)
     job = models.ForeignKey(Job)
