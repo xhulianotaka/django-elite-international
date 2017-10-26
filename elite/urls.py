@@ -22,6 +22,7 @@ from job import views as job_views
 from elite import views as elite_views
 from partners import views as parners_views
 from django.views.generic.base import RedirectView
+from jet.dashboard.dashboard_modules import google_analytics_views
 
 urlpatterns = [
     url(r'^admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),

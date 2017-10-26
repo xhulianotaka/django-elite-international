@@ -4,7 +4,6 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Field
 
 class JobApplicationForm(ModelForm):
-
     class Meta:
         model = JobApplication
         exclude = ('job',)
