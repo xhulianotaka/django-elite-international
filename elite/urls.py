@@ -23,6 +23,7 @@ from elite import views as elite_views
 from partners import views as parners_views
 from django.views.generic.base import RedirectView
 from jet.dashboard.dashboard_modules import google_analytics_views
+from location import views as location_views
 
 urlpatterns = [
     url(r'^admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
@@ -42,15 +43,11 @@ urlpatterns += [
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += [
-    url(r'^$', RedirectView.as_view(url='home', permanent=False)),
-]
-
-urlpatterns += [
     url(r'^imagefit/', include('imagefit.urls')),
 ]
 
 urlpatterns += [
-    url(r'^home/$', home_views.Home.as_view(), name='home'),
+    url(r'^$', home_views.Home.as_view(), name='home'),
 ]
 
 urlpatterns += [
@@ -123,4 +120,8 @@ urlpatterns += [
 
 urlpatterns += [
     url(r'^partners/(?P<slug>[\w-]+)/$', parners_views.PartnerDetail.as_view(), name='partner_detail'),
+]
+
+urlpatterns += [
+    url(r'^location/(?P<id>\d+)/$', location_views.location, name='location'),
 ]

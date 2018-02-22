@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'taggit',
     'envelope',
     'crispy_forms',
-    'cookielaw',
     'watson',
     'admin_honeypot',
     'home',
@@ -66,6 +65,7 @@ INSTALLED_APPS = [
     'job',
     'gallery',
     'partners',
+    'location',
 ]
 
 MIDDLEWARE_CLASSES = [

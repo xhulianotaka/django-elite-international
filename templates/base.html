@@ -1,13 +1,12 @@
 {% load static %}
 {% load imagefit %}
-{% load cookielaw_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <meta charset="UTF-8">
         <title>{% block title %}{% endblock %}</title>
-
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- START: Styles -->
 
         <!-- Google Fonts -->
@@ -278,8 +277,6 @@
                 <!-- END: Header Title -->
             {% endblock %}
 
-            {% cookielaw_banner %}
-
             {% block body %}{% endblock %}
 
             {% block footer %}
@@ -386,9 +383,6 @@
 
         <!-- Pace -->
         <script src="{% static 'js/pace.min.js' %}"></script>
-
-        <!-- Cookie Law -->
-        <script src="{% static 'js/cookielaw.js' %}"></script>
 
         <!-- Extra Scripts -->
         {% block extrascripts %}{% endblock %}
